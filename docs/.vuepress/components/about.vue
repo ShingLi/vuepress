@@ -3,7 +3,7 @@
 		<!-- 个人栏 -->
 		<el-row>
 			<el-col :span='24'>
-				<el-container>
+				<el-container class="main_box">
 					<el-aside width='20%'>
 						<div class="userinfo">
 				            <div class="avatar">
@@ -35,20 +35,20 @@
                                 <p>大志戏功名， 海斗量福祸。 论到囊中羞涩时， 怒指乾坤错！</p>
                             </div>
                             <!-- 个人介绍 -->
-                            <lottie :options="defaultOptions"
-                                :height="200" 
-                                :width="200" 
-                                v-on:animCreated="handleAnimation" />
                         </div>
                     </el-main>
 				</el-container>
+                <el-container>
+                    <el-footer>
+                        <v-footer></v-footer>
+                    </el-footer>
+                </el-container>
 			</el-col>
 		</el-row>
 	</div>
 </template>
 <script>
-    import lottie from 'vue-lottie'
-    import * as animationData from "../public/json/loading.json";
+    import  VFooter from './views/footer.vue'
     export default {
         name: "about",
         data () {
@@ -62,19 +62,13 @@
                     { icon: "&#xe608;", text: "licheng" },
                     { icon: "&#xe60d;", text: "安徽芜湖" },
                     { icon: "&#xe670;", text: "745573545@qq.com" }
-                ],
-                defaultOptions: { animationData: animationData },
-                animationSpeed: 1,
-                anim: {}
+                ]
             };
         },
         created () {
             this.iconClss = [];
         },
-        methods: {
-            handleAnimation (anim) {
-                this.anim = anim;
-            },
+        methods: {  
             startRotate (e) {
                 this.avatarRotate(e,true)
             },
@@ -92,7 +86,7 @@
             }
         },
         components: {
-            lottie
+            VFooter
         }
     };
 </script>
@@ -115,7 +109,8 @@
     }
 	.about_wrapper{
 		width: 100%;
-		padding: 5%;
+        padding: 5%;
+        padding-bottom: 0;
         height: calc(100vh - 3.6rem);
 		background-color:@color-theme;
 		.userinfo{
@@ -192,6 +187,10 @@
             }
         }
     }
+    .main_box{
+        // min-height: calc(100vh - 3.6rem - 60px )
+    }
+    
     html{
         @media screen{
             @media (min-width: 1024px){

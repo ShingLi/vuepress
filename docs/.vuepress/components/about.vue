@@ -30,16 +30,30 @@
 					<el-main>
                         <div class="main">
                             <div class="detail">
-                                <h3>《卜算子 自嘲》</h3>
+                                <h3>《 卜算子 自嘲 》</h3>
                                 <p>本是后山人， 偶做前堂客。 醉舞经阁半卷书， 坐井说天阔。</p>
                                 <p>大志戏功名， 海斗量福祸。 论到囊中羞涩时， 怒指乾坤错！</p>
                             </div>
-                            <!-- 个人介绍 -->
+                            <!-- skil -->
+                           <div class="progress">
+                                <code>Html5</code>
+                                <el-progress :percentage="90"></el-progress>
+                                <code>CSS3</code>
+                                <el-progress :percentage="75" color="#8e71c7"></el-progress>
+                                <code>Jquery</code>
+                                <el-progress :percentage="70" color="#909399"></el-progress>
+                                <code>JavaScript(es5&&es6)</code>
+                                <el-progress :percentage="70" color="#F56C6C"></el-progress>
+                                <code>Mini program(微信小程序)</code>
+                                <el-progress :percentage="70" color="#2db7f5"></el-progress>
+                                <code>Vue</code>
+                                <el-progress :percentage="65" color="#19be6b"></el-progress>
+                           </div>
                         </div>
                     </el-main>
 				</el-container>
                 <el-container>
-                    <el-footer>
+                    <el-footer height='52'>
                         <v-footer></v-footer>
                     </el-footer>
                 </el-container>
@@ -112,7 +126,7 @@
         padding: 5%;
         padding-bottom: 0;
         height: calc(100vh - 3.6rem);
-		background-color:@color-theme;
+        background-color:@color-theme;
 		.userinfo{
 			// padding: 4rem;
             text-align: center;
@@ -173,7 +187,9 @@
         .el-main{
             margin-left: 5vw;
             border-radius: 10px;
-            background: linear-gradient(#F56C6C 0,#EAE3D6 100%);
+            background: #dd5e89; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #dd5e89, #f7bb97); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #dd5e89, #f7bb97); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             .detail {
                 padding-left: 2rem;
                 h3{
@@ -182,19 +198,39 @@
                 }
                 p{
                     line-height: 35px;
-                    text-indent: 1%
+                    text-indent: 1%;
+                    
                 }
+            }
+            .progress{
+                margin-top: 2.2rem;
+                padding-left: 2rem;
+                width: 40%;
             }
         }
     }
-    .main_box{
-        // min-height: calc(100vh - 3.6rem - 60px )
-    }
-    
     html{
         @media screen{
+            @media (min-width: 375px){
+                .detail{
+                    p{
+                        font-size: .7rem;
+                    }
+                }
+            }
+            @media (min-width:414px){
+                .detail{
+                    p{
+                        font-size: .9rem;
+                    }
+                }
+            }
             @media (min-width: 1024px){
-
+                .detail{
+                    p{
+                        font-size: 16px;
+                    }
+                }
             } /*>=1024的设备*/
 
             @media (min-width: 1100px) {
@@ -213,11 +249,10 @@
                     width: 17% !important;
                 }
             } 
-            @media (min-width: 1680px) {
-            
-            } 
-            @media (min-width: 1920px) {
-            } 
         }
+    }
+    // 覆盖element-ui
+    .el-row{
+        height: 100%;  
     }
 </style>

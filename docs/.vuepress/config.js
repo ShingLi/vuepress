@@ -18,17 +18,34 @@ module.exports = {
             {
                 text: '博文',
                 items: [
-                    { text: 'Web', link: '/web/'}
+                    { text: 'CSS', link: '/css/'},
+                    { text: 'Vue', link: '/vue/'},
+                    { text: 'JavaScript', link: '/javascript/'}
                 ]
             },
             { text: '关于', link: '/about/'},
             { text: 'GitHub', link: 'https://github.com/ShingLi'}
 
         ],
-        sidebar: [
-
-        ],
+        sidebar: {
+            '/css/': cssConfig()
+        },
         sidebarDepth: 2,
         lastUpdated: 'Last Updated',
+    },
+    markdown: {
+        // lineNumbers: true 
     }
+}
+
+function cssConfig () {
+    return [
+        {
+            title: 'Css Sticky footers',
+            collapsable: false,
+            children: [
+                ''
+            ]
+        }
+    ]
 }

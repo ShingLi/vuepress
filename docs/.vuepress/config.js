@@ -28,7 +28,8 @@ module.exports = {
 
         ],
         sidebar: {
-            '/css/': cssConfig()
+            '/css/': cssConfig(),
+            '/javascript/': javascriptConfig()
         },
         sidebarDepth: 2,
         lastUpdated: 'Last Updated',
@@ -41,11 +42,24 @@ module.exports = {
 function cssConfig () {
     return [
         {
-            title: 'Css Sticky footers',
+            title: 'css Sticky footers',
             collapsable: false,
             children: [
                 ''
             ]
+        }
+    ]
+}
+
+function javascriptConfig () {
+    return [
+        {
+            title:'ES6 标准入门',
+            collapsable: false,
+            children: [
+                '',
+                'promise'
+            ]            
         }
     ]
 }

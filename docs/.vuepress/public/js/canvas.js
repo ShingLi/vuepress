@@ -1,7 +1,7 @@
 const canvas = () =>{
-    document.addEventListener('touchmove', function (e) {
-        e.preventDefault()
-    })
+    // document.addEventListener('touchmove', function (e) {
+    //     e.preventDefault()
+    // })
     let height = document.getElementsByTagName('header')[0].clientHeight
     // console.log(height)
     var c = document.getElementsByTagName('canvas')[0],

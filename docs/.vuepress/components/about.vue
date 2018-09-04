@@ -211,18 +211,45 @@
     }
     html{
         @media screen{
-            @media (min-width: 375px){
+            @media (max-width: 375px){
                 .detail{
                     p{
                         font-size: .7rem;
                     }
                 }
+                .el-container{
+                    flex-wrap: wrap
+                }
             }
-            @media (min-width:414px){
+            @media (max-width:414px){
                 .detail{
                     p{
                         font-size: .9rem;
                     }
+                }
+                .el-container{
+                    flex-wrap: wrap
+                }
+                .el-aside{
+                    width:100% !important;
+                    .userinfo{
+                        margin: 0 5%;
+                        margin-bottom: 10%;
+                        .base_wrapper{
+                            padding-bottom: 9%
+                        }
+                    }
+                }
+                .el-main{
+                    margin-left:  0 !important;
+                    // margin: 0 5%;
+                    margin-bottom: 10%;
+                    .progress{
+                        width: inherit !important
+                    }
+                }
+                .about_wrapper{
+                    height: inherit !important;
                 }
             }
             @media (min-width: 1024px){
@@ -231,6 +258,11 @@
                         font-size: 16px;
                     }
                 }
+                // .el-main{
+                //     margin-left: 5vw;
+                //     // margin: 0 5%;
+                //     margin-bottom: 10%;
+                // }
             } /*>=1024的设备*/
 
             @media (min-width: 1100px) {

@@ -34,6 +34,7 @@ module.exports = {
         ],
         sidebar: {
             '/css/': cssConfig(),
+            '/vue/': vueConfig(),
             '/javascript/': javascriptConfig()
         },
         sidebarDepth: 2,
@@ -65,6 +66,20 @@ function javascriptConfig () {
                 '',
                 'promise'
             ]            
+        }
+    ]
+}
+
+function vueConfig () {
+    return [
+        {
+            title:'Vue.js',
+            collapsable: false,
+            children: [
+                '',
+                'Ide',
+                'vant-SwipeCell'
+            ]
         }
     ]
 }

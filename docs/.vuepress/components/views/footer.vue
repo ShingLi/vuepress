@@ -22,16 +22,22 @@
     }
     html{
         @media screen{
+            @media (min-width: 20px){
+                ._footer{
+                    line-height: 60px;                    
+                    font-size:7px;
+                }
+            }
             @media (min-width: 375px){
                 ._footer{
                     line-height: 60px;                    
-                    font-size:9px;
+                    font-size:8px;
                 }
             }
             @media (min-width:414px){
                 ._footer{
                     line-height: 70px;
-                    font-size:10px;
+                    font-size:9px;
                 }
             }
             @media (min-width:768px){

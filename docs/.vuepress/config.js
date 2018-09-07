@@ -25,7 +25,8 @@ module.exports = {
                 items: [
                     { text: 'CSS', link: '/css/'},
                     { text: 'Vue', link: '/vue/'},
-                    { text: 'JavaScript', link: '/javascript/'}
+                    { text: 'JavaScript', link: '/javascript/'},
+                    { text: 'ChinesePoetry', link: '/chinesePoetry/'}
                 ]
             },
             { text: '关于', link: '/about/'},
@@ -35,7 +36,8 @@ module.exports = {
         sidebar: {
             '/css/': cssConfig(),
             '/vue/': vueConfig(),
-            '/javascript/': javascriptConfig()
+            '/javascript/': javascriptConfig(),
+            '/chinesePoetry/':chinesePoetryConfig()
         },
         sidebarDepth: 2,
         lastUpdated: 'Last Updated',
@@ -79,6 +81,17 @@ function vueConfig () {
                 '',
                 'Ide',
                 'vant-SwipeCell'
+            ]
+        }
+    ]
+}
+function chinesePoetryConfig() {
+    return [
+        {
+            title:'中文古诗',
+            collapsable: false,
+            children: [
+                ''
             ]
         }
     ]

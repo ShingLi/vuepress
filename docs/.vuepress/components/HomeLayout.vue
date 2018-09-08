@@ -1,7 +1,5 @@
 <template>
     <div class="home-wrapper">
-    	
-		<!-- <v-footer></v-footer> -->
     	<canvas class="canvas"></canvas>
     </div>
 </template>
@@ -11,7 +9,9 @@
 	export default {
 	    name:'home',
 	    mounted() {
-	    	canvas()
+	    	setTimeout(() => {
+                canvas()
+            },26)
 	    },
 	    components:{
 	    	vFooter

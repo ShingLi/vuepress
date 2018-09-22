@@ -68,8 +68,9 @@ function javascriptConfig () {
             collapsable: false,
             children: [
                 '',
-                'promise',
-                'array'
+                'function',
+                'array',
+                'promise'
             ]            
         }
     ]

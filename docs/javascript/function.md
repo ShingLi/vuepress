@@ -253,10 +253,10 @@ length 是函数对象的一个属性值，指该函数有多少个必须要传�
 代码二 
 ```js
      var x = 1
-        function foo (x, y = function () { x = 2}) { // { let x; let y = function () { x= 2 }} 参数作用域
-            x = 3  // 沿着作用域链向上找到参数x x = 3 y() 调用的时候x = 2 重新覆盖 了x 
-            y() // x = 3  f() >>  x = 2 形参的x 为2
-            console.log(x) // 当前作用域未声明，沿着作用域找到了 形参x  结果2
+     function foo (x, y = function () { x = 2}) { // { let x; let y = function () { x= 2 }} 参数作用域
+         x = 3  // 沿着作用域链向上找到参数x x = 3 y() 调用的时候x = 2 重新覆盖 了x 
+         y() // x = 3  f() >>  x = 2 形参的x 为2
+         console.log(x) // 当前作用域未声明，沿着作用域找到了 形参x  结果2
         }
-        foo()
+     foo()
 ```

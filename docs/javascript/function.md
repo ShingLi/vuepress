@@ -260,3 +260,46 @@ length 是函数对象的一个属性值，指该函数有多少个必须要传�
         }
      foo()
 ```
+
+## 2.rest 参数
+
+Es6 引入rest 参数（形式为...变量名），用于获取函数多余参数，这样就不需要使用arguments对象了。reset 参数搭配的变量是一个
+数组，该变量可以将多余的参数放到数组中
+
+```js
+    function add (...values) {
+        let sum  = 0
+        for (value of values) {
+            sum += value
+        }
+        return sum
+    }
+    add (1,2,3) //6
+    const arr = [1,2,3,4,5,6]
+    add(...arr) // 21
+```
+
+rest 参数代替arguments变量
+
+```js
+    function sortNumbers () {
+        return Array.prototype.slice.call(arguments).sort()
+    }
+```
+
+上面代码，先调用[].slice.call() 方法将arguments 转为数组这样便可以调用数组实例的方法
+
+reset参数必须是最后一个参数，否则报错
+
+函数的length 属性不包括reset参数
+
+## 3.严格模式
+
+ES5 允许函数内部使用 严格默认 'use strict' 但是ES6 有点不同，ES6 规定只要函数参数使用了默认值，解构赋值或者扩展运算符，
+那么函数内部不能显性的使用严格默认，否则会报错
+
+## 4.name 属性
+
+## 5.箭头函数
+
+## 6.双冒号运算符

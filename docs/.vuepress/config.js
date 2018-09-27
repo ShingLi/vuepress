@@ -84,7 +84,8 @@ function vueConfig () {
             children: [
                 '',
                 'Ide',
-                'vant-SwipeCell'
+                'vant-SwipeCell',
+                'vue-config'
             ]
         }
     ]

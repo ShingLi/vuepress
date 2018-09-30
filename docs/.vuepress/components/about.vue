@@ -45,9 +45,9 @@
                                 <code>JavaScript(es5&&es6)</code>
                                 <el-progress :percentage="70" color="#F56C6C"></el-progress>
                                 <code>Mini program(微信小程序)</code>
-                                <el-progress :percentage="70" color="#2db7f5"></el-progress>
+                                <el-progress :percentage="60" color="#2db7f5"></el-progress>
                                 <code>Vue</code>
-                                <el-progress :percentage="65" color="#19be6b"></el-progress>
+                                <el-progress :percentage="70" color="#19be6b"></el-progress>
                            </div>
                         </div>
                     </el-main>

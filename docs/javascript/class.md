@@ -1,0 +1,90 @@
+# Class 的基本语法
+
+看到了一段很有意思的代码，决定好好了解下ES6的class(类)
+
+</br>
+
+代码如下
+
+``` js
+    class Clock extends React.Component {
+        constructor (props) {
+            super(props)
+            this.state = { date: new Date()}
+        }
+        componentDidMount () {
+            this.timer = setInterVal(() => this.tick(), 1000)
+        }
+        componentWillUnmount () {
+            clearInterval(this.timer)
+        }
+        tick () {
+            this.setState({
+                date: new Date()
+            })
+        }
+        render () {
+            return (
+                <div>
+                    <h1>hello Vue</h1>
+                    <h2>现在的时间 {this.state.data.toLocaleTimeString()}</h2>
+                </div>
+            )
+        }
+        ReactDOM.render(
+            <Clock />,
+            document.getElementById('app')
+        )
+    }
+```
+
+上面代码引用 -[React](https://reactjs.org/) 官网的解释
+
+```js
+    1. 当<Clock/> 被传入ReactDOM.render() 时, React 会调用Clock 组件的构造函数。
+       因为Clock 要显示的是当前的时间，所以它将使用包含当前时间对象来初始化 this.state
+    2. React 调用 render() ,React 从该方法返回内容中要得到的显示在屏幕上的内容，
+       然后，React更新DOM 已匹配Clock 的渲染输出
+    3. 当Clock 输出被插入到DOM 中时， React 调用 ComponentMount() 生命钩子函数，在该钩
+       子函数中设置定时器 
+       // Ps => Vue 中对应的生命钩子是 mounted()
+    4. 浏览器会每隔一秒调用下 tick() 方法，在该方法中通过 setState() 方法并传递一个对象
+       安排UI更新，通过 setState() React得知组件 state(状态)的变化 随机调用 render()
+       方法获取当前的显示内容,这次 render() 方法中的 this.state.date 的值已经发生改变
+       React 对DOM进行更新
+    5. 如果通过其他操作将Clock 组件从DOM中移除， React会调用 componentWillUnmount()
+       生命钩子移除定时器
+    // PS => Vue 中对应的生命钩子是 destroyed() Vue中改变 State 需要显性提交 mutation
+    // 这里React 的语法有点类似微信小程序 this.setData({}) 小程序啊小程序 抄完VUE抄React
+```
+
+## 简介
+
+JavaScript 的传统方法是通过构造函数定义并生成新对象
+
+```js
+    function Person (name, gender) {
+        this.name = name
+        this.gender = gender
+    }
+    Person.prototype.toString = function () {
+        return `${this.name} - ${this.gender}`
+    }
+    const zhen = new Person('zhen', 'lady')
+```
+
+ES6 写法
+
+```js
+    class Zhen {
+        constructor (name, gender) {
+            this.name = name
+            this.gender = gender
+        }
+        toString () {
+            return `${this.name} - ${this.gender}`
+        }
+    }
+    new Zhen ('zhen', 'lady')  // 女神
+```
+:kissing_heart: 女神

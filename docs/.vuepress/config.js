@@ -70,7 +70,8 @@ function javascriptConfig () {
                 '',
                 'function',
                 'array',
-                'promise'
+                'promise',
+                'class'
             ]            
         }
     ]

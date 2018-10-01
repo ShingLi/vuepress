@@ -76,7 +76,7 @@ JavaScript 的传统方法是通过构造函数定义并生成新对象
 ES6 写法
 
 ```js
-    class Zhen {
+    class Person {
         constructor (name, gender) {
             this.name = name
             this.gender = gender
@@ -85,6 +85,16 @@ ES6 写法
             return `${this.name} - ${this.gender}`
         }
     }
-    new Zhen ('zhen', 'lady')  // 女神
+    new Person ('zhen', 'lady')  // 女神
 ```
 :kissing_heart: 女神
+
+NOTE 定义类的时候前面不能加上function 保留字
+
+```js
+    class Person {
+      // ....
+    }
+    typeof Person // function 
+    Person  === Person.prototype.constructor  // true
+```

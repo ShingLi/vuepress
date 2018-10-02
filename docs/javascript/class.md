@@ -46,7 +46,7 @@
     2. React 调用 render() ,React 从该方法返回内容中要得到的显示在屏幕上的内容，
        然后，React更新DOM 已匹配Clock 的渲染输出
     3. 当Clock 输出被插入到DOM 中时， React 调用 ComponentMount() 生命钩子函数，在该钩
-       子函数中设置定时器 
+       子函数中设置定时器
        // Ps => Vue 中对应的生命钩子是 mounted()
     4. 浏览器会每隔一秒调用下 tick() 方法，在该方法中通过 setState() 方法并传递一个对象
        安排UI更新，通过 setState() React得知组件 state(状态)的变化 随机调用 render()
@@ -61,6 +61,14 @@
 ## 简介
 
 JavaScript 的传统方法是通过构造函数定义并生成新对象
+
+```js
+    // ES5 原生构造函数 (见红宝书 P145)
+    const person = new Object()
+    const colors = new Array()
+```
+
+ES5 写法
 
 ```js
     function Person (name, gender) {
@@ -87,14 +95,15 @@ ES6 写法
     }
     new Person ('zhen', 'lady')  // 女神
 ```
-:kissing_heart: 女神
 
-NOTE 定义类的时候前面不能加上function 保留字
+:kissing_heart: 女神 哦！忘了我是个单身狗······· :sweat_smile:
+
+Note 定义类的时候前面不能加上function 保留字
 
 ```js
     class Person {
       // ....
     }
-    typeof Person // function 
+    typeof Person // function
     Person  === Person.prototype.constructor  // true
 ```

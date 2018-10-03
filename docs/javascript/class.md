@@ -107,3 +107,48 @@ Note 定义类的时候前面不能加上function 保留字
     typeof Person // function
     Person  === Person.prototype.constructor  // true
 ```
+
+上面的代码中，类的数据类型是函数
+
+类的所有方法都定义在类的prototype属性上,其实prototye  是一个指针指向prototype原型对象
+类的方法除了construct() 全部都在这个对象上
+
+```js
+    const methodsNames = 'getNames'
+    class Person {
+        constructor (name, gender) {
+            this.name = name
+            this.gender = gender
+        }
+        toString () {
+            return `${this.name} - ${this.gender}`
+        }
+        [methodsNames] () {
+            // z
+        }
+    }
+    Person === Person.prototype.constructor // true
+    Object.keys(Person.prototype) // []
+```
+
+上面的代码: 类的原型对象上的constructor 指回类本身。 ES6类 内部定义的方法是不可以被枚举的(ES5的构造函数定义在原型对象上的方法是可以被枚举的)。可以使用对象表达式
+
+## 严格模式
+
+类默认使用的是严格模式，所以不需要在类的内部使用 'use strict' 类中的代码默认是严格模式
+
+## constructor()
+
+constructor方法是类的默认方法，通过new命令生成对象实例时自动调用该方法，一个类必须有一个constructor()
+方法，如果没有显性的定义，一个空的constructor 方法会被默认添加
+
+```js
+    class Person {
+        //
+    }
+    class Person {
+        constructor () {}
+    }
+```
+
+## 类的实例对象

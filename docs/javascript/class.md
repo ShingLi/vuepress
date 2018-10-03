@@ -58,7 +58,7 @@
     // 这里React 的语法有点类似微信小程序 this.setData({}) 小程序啊小程序 抄完VUE抄React
 ```
 
-## 简介
+## 1.简介
 
 JavaScript 的传统方法是通过构造函数定义并生成新对象
 
@@ -133,11 +133,11 @@ Note 定义类的时候前面不能加上function 保留字
 
 上面的代码: 类的原型对象上的constructor 指回类本身。 ES6类 内部定义的方法是不可以被枚举的(ES5的构造函数定义在原型对象上的方法是可以被枚举的)。可以使用对象表达式
 
-## 严格模式
+## 2.严格模式
 
 类默认使用的是严格模式，所以不需要在类的内部使用 'use strict' 类中的代码默认是严格模式
 
-## constructor()
+## 3.constructor()
 
 constructor方法是类的默认方法，通过new命令生成对象实例时自动调用该方法，一个类必须有一个constructor()
 方法，如果没有显性的定义，一个空的constructor 方法会被默认添加
@@ -151,4 +151,67 @@ constructor方法是类的默认方法，通过new命令生成对象实例时自
     }
 ```
 
-## 类的实例对象
+## 4.类的实例对象
+
+生成实例对象是 new命令，如果不加 new 命令像普通函数一样调用是会报错的
+
+```js
+    class Person {
+        constructor (name, gender) {
+            this.name = name
+            this.gender = gender
+        }
+    }
+    Person ('icheng', 'man')
+    // TypeError: Class constructor Person cannot be invoked without 'new'
+    const cheng = new Person ('licheng', 'man')
+    // right
+```
+
+实例的属性除非显性定义在其本身(this) 否则都是定义在原型上(Class)
+
+```js
+    class Person {
+        constructor (name, gender) {
+            this.name = name
+            this.gender = gender
+        }
+        toString () {
+            return `${this.name},${this.gender}`
+        }
+    }
+    const z = new Person ('zhen', 'lady')
+    z.toString() // zhen, lady
+    z.hasOwnProperty('name') // true
+    z.hasOwnProperty('gender) // true
+    z.hasOwnProperty('toString') // false
+    z.__proto__.hasOwnProperty('toString') //  true
+```
+
+上面的代码 name 和gender 是实例对象z自身的属性 而toString 是原型对象(class)的属性
+
+## 5.Class表达式
+
+与函数一样class也可以使用表达式的形式定义
+
+```js
+    const myClass = class Me {
+        getClassName () {
+            return Me.name
+        }
+    }
+    new myClass()
+```
+
+上面的代码 使用表达式定义了一个类，这个类的名字是myClass 而不是Me(当前的类) 如果类的内部没有用到这个Me 可以省略
+
+```js
+    const MyClass = class {
+        getClassName () {
+            return this.name
+        }
+    }
+    new MyClass() // MyClass
+```
+
+## 6.不存在变量提升

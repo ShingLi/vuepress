@@ -214,4 +214,33 @@ constructor方法是类的默认方法，通过new命令生成对象实例时自
     new MyClass() // MyClass
 ```
 
+采用Class 表达式可以写出立即执行类的实例
+
+```js
+    const person = new class {
+        constructor (gender) {
+            this.gender = gender
+        }
+        sayGender () {
+            return this.gender
+        }
+    } ('lady')
+    person.sayGender() // lady
+```
+
 ## 6.不存在变量提升
+
+类不存在变量提升(hoist),ES5的构造函数是有变量提升的
+
+```js
+    new Person ()
+    class Person {}
+    // ReferenceError: Foo is not defined
+```
+
+```js
+    const Person = class {}
+    class cheng extends Person {}
+```
+
+## 7.私有方法和私有属性

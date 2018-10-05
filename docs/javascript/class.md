@@ -68,6 +68,20 @@ JavaScript 的传统方法是通过构造函数定义并生成新对象
     const colors = new Array()
 ```
 
+取得对象的原型对象
+
+```js
+    Object.getPrototypeOf()
+```
+
+检测对象的属性存在与实例还是原型中
+
+```js
+    Object.hasOwnProperty()
+```
+
+想要准确判断属性存在与实例中还是原型，同时使用 in 操作符 和 Object.hasOwnProperty()
+
 ES5 写法
 
 ```js
@@ -244,3 +258,44 @@ constructor方法是类的默认方法，通过new命令生成对象实例时自
 ```
 
 ## 7.私有方法和私有属性
+
+ES6 不提供私有方法。
+
+1.命名加以区别
+
+```js
+    class Widget {
+        // 公有方法
+        foo (baz) {
+            this._bar(baz)
+        }
+        // 私有方法
+        _bar (baz) {
+            return this.snaf = baz
+        }
+    }
+```
+
+上面的代码中，_bar 方法前面的下划线，表示这是一个只限于内部使用的私有方法。但是，在类的外部，还是可以调用到
+这个方法
+
+2.将私有方法移除模块通过call()借用this
+
+```js
+    class Widget {
+        foo (baz) {
+            bar.call(this,baz)
+        }
+    }
+    function bar (baz) {
+        return this.snaf = baz
+    }
+    let z = new Widget ()
+    z.foo()
+```
+
+3.Symbol 值的唯一性，将私有方法命名为一个Symbol值
+
+## 8.this 的指向
+
+类的方法内部如果含有this,它默认指向类的实例

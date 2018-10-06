@@ -41,7 +41,7 @@ module.exports = {
             '/javascript/': javascriptConfig(),
             '/chinesePoetry/':chinesePoetryConfig()
         },
-        sidebarDepth: 2,
+        sidebarDepth: 4,
         lastUpdated: 'Last Updated',
     },
     markdown: {
@@ -68,6 +68,7 @@ function javascriptConfig () {
             collapsable: false,
             children: [
                 '',
+                'object',
                 'function',
                 'array',
                 'promise',

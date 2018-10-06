@@ -1,4 +1,4 @@
-# SwipeCell的坑
+# Vant的坑
 
 用vue 的一款组件库 vant时，踩了一个坑 </br>
 </br>
@@ -9,7 +9,7 @@
 这样的功能以Vue 这样繁荣的生态圈肯定有啊，直接Google vant 找啊找，碍？找到，SwipeCell 滑动单元格
 然后 CV 大法好啊，一顿操作猛如虎！刷新，ε=(´ο｀*)))唉？怎么不行？ 查下API，API 是这样的</br>
 
-## API
+## SwipeCell API
 
 | 参数 | 说明 | 类型 | 默认值 |
 | ------ | ------ | ------ | ------ |
@@ -17,14 +17,14 @@
 | right-width | 左侧滑动区域宽度 | Number | 0 |
 | on-close | 关闭时的回调函数 | Function | - |
 
-## onClose 参数
+### onClose 参数
 
 |参数 | 类型 | 说明 |
 | ------ | ------ | ------ |
 |clickPosition | String| 关闭时的点击位置 (left right cell outside)|
 instance | Object | SwipeCell | 实例
 
-### 代码
+#### 代码
 
 ```vue
     <van-swipe-cell :right-width="65" :left-width="65" :on-close='onClose'>
@@ -86,3 +86,43 @@ instance | Object | SwipeCell | 实例
 ```
 
 O,完美解决问题 :smile:
+
+### Dialog 的高级使用
+
+</br>
+
+Dialog 是原生标签 所以文档上有2种调用方法一种是函数式调用,一种是组件式调用!
+
+文档写的很清楚的了可以参考这里 -[vant组件](https://youzan.github.io/vant/#/zh-CN/dialog) 我踩的坑是
+组件调用的形式。
+
+组件式调用需要显式的使用
+
+```js
+    import Vue from 'vue'
+    import { Dialog } from 'vant
+    Vue.use(Dialog)
+```
+
+```html
+    <van-dialog
+        v-model="show"
+        show-cancel-button
+        before-close="beforeClose"
+    >
+        <van-field
+            v-model="username"
+            label="用户名"
+            placeholder="请输入用户名"
+        />
+        <van-field
+            v-model="password"
+            type="password"
+            label="密码"
+            placeholder="请输入密码"
+        />
+    </van-dialog>
+```
+
+上面的代码是组件的引用，但是按照惯性来说应该需要注册组件，但是！这里不需要注册组件，我开始注册了组件会无法
+正常调用! 去掉注册就好。这点我在vant 的官方issues 没有找到原因

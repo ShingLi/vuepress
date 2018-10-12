@@ -373,6 +373,8 @@ OO语言的继承有2种概念一个是 接口继承一个是实现继承，而J
 
 准确的区分一个对象的类型需要使用 instanceof 操作符
 
+instanceof 运算符。instanceof 要求左边运算符是一个对象右边是一个对象类的名字或者是构造函数
+
 第二种方法是 isPrototypeOf()
 
 ```js

@@ -37,17 +37,17 @@
                             <!-- skil -->
                            <div class="progress">
                                 <code>Html5</code>
-                                <el-progress :percentage="90"></el-progress>
+                                <el-progress :percentage="80"></el-progress>
                                 <code>CSS3</code>
                                 <el-progress :percentage="75" color="#8e71c7"></el-progress>
                                 <code>Jquery</code>
-                                <el-progress :percentage="70" color="#909399"></el-progress>
+                                <el-progress :percentage="69" color="#909399"></el-progress>
                                 <code>JavaScript(es5&&es6)</code>
-                                <el-progress :percentage="70" color="#F56C6C"></el-progress>
+                                <el-progress :percentage="61" color="#F56C6C"></el-progress>
                                 <code>Mini program(微信小程序)</code>
                                 <el-progress :percentage="60" color="#2db7f5"></el-progress>
                                 <code>Vue</code>
-                                <el-progress :percentage="70" color="#19be6b"></el-progress>
+                                <el-progress :percentage="69" color="#19be6b"></el-progress>
                            </div>
                         </div>
                     </el-main>

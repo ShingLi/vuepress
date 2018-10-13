@@ -309,3 +309,25 @@ OO语言的继承有2种概念一个是 接口继承一个是实现继承，而J
 原型链是实现继承主要方法。其基本思想是利用原型让一个引用类型继承里一个引用类型的属性和方法
 
 让原型对象等于另一个类型的实例，层层递进构成了原型链
+
+```js
+    function SuperType () {
+        this.property = true
+    }
+    SuperType.prototype.getSuperValue = function () {
+        return this.property
+    }
+
+    function subType () {
+        this.property = false
+    }
+
+    subType.prototype = new SuperType()
+
+    subType.prototype.getSubValue = function () {
+        return this.property
+    }
+    const instance = new subType()
+    instance.getSuperValue() // true
+```
+

@@ -331,3 +331,52 @@ OO语言的继承有2种概念一个是 接口继承一个是实现继承，而J
     instance.getSuperValue() // true
 ```
 
+上面的定义了两个类型：SuperType 和 subType。每一个类型分别有一个属性和一个方法。它们的区别是subType
+继承了SuperType。而继承是通过创建SuperType 实例，并将改实例赋给subType.prototype 。实现的本质是重写
+原型对象
+
+#### 1.1 确定原型和实例直接的关系
+
+确定原型和实例之间的关系 第一种方式是使用 instanceof 操作符
+
+```js
+    instance instanceof subType // true
+    instance instanceof SuperType // true
+    instance instanceof Object // true
+```
+
+-[instanceof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof)
+
+之前只是用，感觉不是很清楚这个操作符。还是有必要捋一遍这个玩意
+
+个人的理解: JS 中判断一个变量的类型常常使用 typeof 这个操作符(一元运算符，返回一个说明运算符类型的字符串)
+
+```js
+    typeof 1 // number
+    typeof '1' // string
+    typeof true // boolean
+    typeof undefined // undefined
+
+    typeof null // object 注意
+
+    typeof Object // function
+    typeof Array // function
+    
+    const person = {}
+    typeof person // object
+    const arr = []
+    typeof arr // object
+```
+
+上面的代码检测90%的基本类型的值是可以返回正确的结果的。但是在检测引用类型的变量时。就是出现都是Object
+比如：Array,null 也会显示对象 贴一个掘金的面试题 -[判断对象](https://juejin.im/post/5bc1ae9be51d450e8b140b0c)
+
+准确的区分一个对象的类型需要使用 instanceof 操作符
+
+第二种方法是 isPrototypeOf()
+
+```js
+    Object.isPrototypeOf(instance) // true
+    SuperType.isPrototypeOf(instance) // true
+    subType.isPrototypeOf(instance)
+```

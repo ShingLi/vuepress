@@ -36,9 +36,15 @@
                             </div>
                             <!-- skil -->
                            <div class="progress">
+<<<<<<< HEAD
                                 <code>Html5</code>
                                 <el-progress :percentage="80"></el-progress>
                                 <code>CSS3</code>
+=======
+                                <code>Html&&Html5</code>
+                                <el-progress :percentage="80"></el-progress>
+                                <code>CSS&&CSS3</code>
+>>>>>>> master
                                 <el-progress :percentage="75" color="#8e71c7"></el-progress>
                                 <code>Jquery</code>
                                 <el-progress :percentage="69" color="#909399"></el-progress>

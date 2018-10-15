@@ -349,27 +349,50 @@ OO语言的继承有2种概念一个是 接口继承一个是实现继承，而J
 
 之前只是用，感觉不是很清楚这个操作符。还是有必要捋一遍这个玩意
 
-个人的理解: JS 中判断一个变量的类型常常使用 typeof 这个操作符(一元运算符，返回一个说明运算符类型的字符串)
+先说说typeof个人的理解:  typeof 这个操作符(一元运算符，返回一个说明运算符类型的字符串)
 
 ```js
     typeof 1 // number
     typeof '1' // string
     typeof true // boolean
     typeof undefined // undefined
+    let s = Symbol()
+    typeof s // symbol
 
     typeof null // object 注意
 
     typeof Object // function
     typeof Array // function
-    
-    const person = {}
-    typeof person // object
-    const arr = []
-    typeof arr // object
+    typeof {} // object
+    typeof [] // object
 ```
 
-上面的代码检测90%的基本类型的值是可以返回正确的结果的。但是在检测引用类型的变量时。就是出现都是Object
-比如：Array,null 也会显示对象 贴一个掘金的面试题 -[判断对象](https://juejin.im/post/5bc1ae9be51d450e8b140b0c)
+typeof 一般用于判断一个变量的类型，我们可以通过 typeof 这个一元操作符判断 string,number,boolean,
+null,undefined,function,symbol(es6) 这七种类型。但是在判断 Object 类型的时候只能告诉我们这个是
+object类型，不能具体到哪一种类型--如上代码所示
+
+</br>
+
+**最近看到了掘金的一遍文章阐述了为什么 typeof 在判断 null 的时候是显示 object 了**
+原文地址 -[typeof](https://juejin.im/post/5b0b9b9051882515773ae714)
+
+就是js 在底部存储变量的时候，会在变量的机器码的低位 1-3位储存其类型信息
+
++ 000：对象
++ 010：浮点
++ 100：字符串
++ 110：布尔
++ 1：整数
+
+单数 null 和 undefined 这2个有点特殊
+
+null: 所有机器码都是 000
+
+undefin: −2^30
+
+这也就是null被判断为 对象了
+
+---
 
 准确的区分一个对象的类型需要使用 instanceof 操作符
 

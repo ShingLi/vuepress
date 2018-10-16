@@ -405,3 +405,5 @@ instanceof 运算符。instanceof 要求左边运算符是一个对象右边是�
     SuperType.isPrototypeOf(instance) // true
     subType.isPrototypeOf(instance)
 ```
+
+#### 1.2 定义方法

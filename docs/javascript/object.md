@@ -407,3 +407,16 @@ instanceof 运算符。instanceof 要求左边运算符是一个对象右边是�
 ```
 
 #### 1.2 定义方法
+
+```js
+    function SuperType () {
+        this.prototype = true
+    }
+    SuperType.prototype.getSuperValue = function () {
+        return this.prototype
+    }
+    function SubType () {
+        this.prototype = false
+    }
+    
+```

@@ -418,5 +418,13 @@ instanceof 运算符。instanceof 要求左边运算符是一个对象右边是�
     function SubType () {
         this.prototype = false
     }
-    
+    SubType.prototype = new SuperType()
+    SubType.prototype.getSubValue = function () {
+        return this.prototype
+    }
+    SubType.prototype.getSuperValue = function () {
+        return false
+    }
+    const instance = new SubType()
+    instance.getSuperValue() // false
 ```

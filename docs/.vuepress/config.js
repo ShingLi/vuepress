@@ -64,7 +64,7 @@ function cssConfig () {
 function javascriptConfig () {
     return [
         {
-            title:'ES6 标准入门',
+            title:'ES5 & ES6标准入门',
             collapsable: false,
             children: [
                 '',

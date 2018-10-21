@@ -1,4 +1,4 @@
-# Array 的扩展
+# ES6.Array 的扩展
 
 ## 数组实例的 flat()
 

@@ -1,4 +1,4 @@
-# Promise 对象
+# ES6.Promise 对象
 
 ## Promise的含义
 

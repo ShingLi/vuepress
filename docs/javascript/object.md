@@ -449,4 +449,3 @@ instanceof 运算符。instanceof 要求左边运算符是一个对象右边是�
     instance1.colors.push('pink')
     console.log(instance1.colors) // SubType {colors: Array(4)}
 ```
-

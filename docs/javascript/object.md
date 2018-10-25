@@ -449,3 +449,7 @@ instanceof 运算符。instanceof 要求左边运算符是一个对象右边是�
     instance1.colors.push('pink')
     console.log(instance1.colors) // SubType {colors: Array(4)}
 ```
+
+小红书在P 168 页是这么描述的 --
+
+子类型调用超类型的构造函数。

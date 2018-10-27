@@ -418,16 +418,34 @@ instanceof 运算符。instanceof 要求左边运算符是一个对象右边是�
     function SubType () {
         this.prototype = false
     }
-    SubType.prototype = new SuperType()
     SubType.prototype.getSubValue = function () {
         return this.prototype
     }
     SubType.prototype.getSuperValue = function () {
         return false
     }
+    SubType.prototype = new SuperType()
     const instance = new SubType()
     instance.getSuperValue() // false
 ```
 
 上面的代码第一个方法是添加一个原先不存在的方法，第二个方法是添加一个父类型中已经存在的方法。但是新添加的
 方法或者重写的方法需要放到继承的后面
+
+### 2借用构造函数
+
+在子类型的内部调用超类型的构造函数
+
+```js
+    function SuperType () {
+        this.colors = ['red', 'blue', 'green']
+    }
+    function SubType () {
+        console.log(this) // SubType {}
+        SuperType.call(this)
+        console.log(this) // SubType {colors: Array(3)}
+    }
+    const instance1 = new SubType()
+    instance1.colors.push('pink')
+    console.log(instance1.colors) // SubType {colors: Array(4)}
+```

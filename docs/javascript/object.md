@@ -452,4 +452,42 @@ instanceof 运算符。instanceof 要求左边运算符是一个对象右边是�
 
 小红书在P 168 页是这么描述的 --
 
-子类型调用超类型的构造函数。通过使用 call() 或者使用 apply() 
+子类型调用超类型的构造函数。通过使用 call() 或者使用 apply()。就是在未来的新建的实例的环境下调用SuperType
+构造函数。新的SubType 对象上执行SuperType 函数中定义的所有对象初始化代码
+
+### 3组合继承
+
+组合继承是最常用的继承方式。使用原型链实现对原型属性和方法的继承，通过构造函数实现对实例属性的继承
+
+```js
+    function SuperType (name) {
+        this.name = name // 构造函数传参
+        this.colors = ['red', 'blue', 'green']
+    }
+
+    SuperType.prototype.sayName = function () {
+        alert(this.name)
+    }
+
+    function SubType (name, gender) {
+        // 继承属性
+        SuperType.call(this,name)
+        this.gender = gender
+    }
+
+    SubType.prototype = new SuperType ()
+    SubType.prototype.constructor = SubType
+    SubType.prototype.sayGender = function () {
+        alert(this.gender)
+    }
+
+    const instance1 = new SubType ('珍', 'lady')
+    instance1.colors.push('black') // red,blue,green,black
+    instance1.sayName () // 珍
+    instance1.sayGender() // lady
+
+```
+
+上面的代码我是这么理解的 new SubType() 调用的构造函数，此刻的构造函数就是一个对象，这个对象里面有 gender
+属性 属性值为 'lady' , name 属性值为 '珍' 还有一个数组 colors。 这个构造函数对象同时还有一个__proto__
+属性属性值指向 SuperType 的原型对象

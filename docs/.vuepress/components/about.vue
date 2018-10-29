@@ -1,65 +1,67 @@
 <template>
-	<div class="about_wrapper">
+	<transition name ='slide'>
+        <div class="about_wrapper">
 		<!-- 个人栏 -->
-		<el-row>
-			<el-col :span='24'>
-				<el-container class="main_box">
-					<el-aside width='20%'>
-						<div class="userinfo">
-				            <div class="avatar">
-				                <img :src="$withBase(`${avatar}?imageView2/1/w/80/h/80`)"
-                                    @mouseover='startRotate'
-                                    @mouseout= 'endRotate'
-                                >
-				            </div>
-							<div class="base_wrapper">
-								<div class="base_info">
-									<p class="left"></p>
-									<p class="base">个人信息</p>
-								</div>
-                                <div class="item"
-                                    v-for='item in bossInfo'
-                                >
-                                    <i class="iconfont" v-html='item.icon'></i>
-                                    <span>{{item.text}}</span>
+            <el-row>
+                <el-col :span='24'>
+                    <el-container class="main_box">
+                        <el-aside width='20%'>
+                            <div class="userinfo">
+                                <div class="avatar">
+                                    <img :src="$withBase(`${avatar}?imageView2/1/w/80/h/80`)"
+                                        @mouseover='startRotate'
+                                        @mouseout= 'endRotate'
+                                    >
                                 </div>
-                                
-							</div>
-						</div>
-					</el-aside>
-					<el-main>
-                        <div class="main">
-                            <div class="detail">
-                                <h3>《 卜算子 自嘲 》</h3>
-                                <p>本是后山人， 偶做前堂客。 醉舞经阁半卷书， 坐井说天阔。</p>
-                                <p>大志戏功名， 海斗量福祸。 论到囊中羞涩时， 怒指乾坤错！</p>
+                                <div class="base_wrapper">
+                                    <div class="base_info">
+                                        <p class="left"></p>
+                                        <p class="base">个人信息</p>
+                                    </div>
+                                    <div class="item"
+                                        v-for='item in bossInfo'
+                                    >
+                                        <i class="iconfont" v-html='item.icon'></i>
+                                        <span>{{item.text}}</span>
+                                    </div>
+                                    
+                                </div>
                             </div>
-                            <!-- skil -->
-                           <div class="progress">
-                                <code>Html&&Html5</code>
-                                <el-progress :percentage="80"></el-progress>
-                                <code>CSS&&CSS3</code>
-                                <el-progress :percentage="75" color="#8e71c7"></el-progress>
-                                <code>Jquery</code>
-                                <el-progress :percentage="69" color="#909399"></el-progress>
-                                <code>JavaScript(es5&&es6)</code>
-                                <el-progress :percentage="61" color="#F56C6C"></el-progress>
-                                <code>Mini program(微信小程序)</code>
-                                <el-progress :percentage="60" color="#2db7f5"></el-progress>
-                                <code>Vue</code>
-                                <el-progress :percentage="69" color="#19be6b"></el-progress>
-                           </div>
-                        </div>
-                    </el-main>
-				</el-container>
-                <el-container>
-                    <el-footer height='52'>
-                        <v-footer></v-footer>
-                    </el-footer>
-                </el-container>
-			</el-col>
-		</el-row>
-	</div>
+                        </el-aside>
+                        <el-main>
+                            <div class="main">
+                                <div class="detail">
+                                    <h3>《 卜算子 自嘲 》</h3>
+                                    <p>本是后山人， 偶做前堂客。 醉舞经阁半卷书， 坐井说天阔。</p>
+                                    <p>大志戏功名， 海斗量福祸。 论到囊中羞涩时， 怒指乾坤错！</p>
+                                </div>
+                                <!-- skil -->
+                            <div class="progress">
+                                    <code>Html&&Html5</code>
+                                    <el-progress :percentage="80"></el-progress>
+                                    <code>CSS&&CSS3</code>
+                                    <el-progress :percentage="75" color="#8e71c7"></el-progress>
+                                    <code>Jquery</code>
+                                    <el-progress :percentage="69" color="#909399"></el-progress>
+                                    <code>JavaScript(es5&&es6)</code>
+                                    <el-progress :percentage="61" color="#F56C6C"></el-progress>
+                                    <code>Mini program(微信小程序)</code>
+                                    <el-progress :percentage="60" color="#2db7f5"></el-progress>
+                                    <code>Vue</code>
+                                    <el-progress :percentage="69" color="#19be6b"></el-progress>
+                            </div>
+                            </div>
+                        </el-main>
+                    </el-container>
+                    <el-container>
+                        <el-footer height='52'>
+                            <v-footer></v-footer>
+                        </el-footer>
+                    </el-container>
+                </el-col>
+            </el-row>
+	    </div>
+    </transition>
 </template>
 <script>
     import  VFooter from './views/footer.vue'
@@ -104,6 +106,15 @@
         }
     };
 </script>
+<style lang="less">
+    .slide-enter-active,.slide-leave-active{
+        transition: all .4s
+    }
+    .slide-enter, .slide-leave-to{
+        transform: translate3d(100%, 0, 0)
+    }
+</style>
+
 <style lang="less" scoped>
     @import '../public/styles/variable.less';
     @font-face {
@@ -122,10 +133,11 @@
         -moz-osx-font-smoothing: grayscale;
     }
 	.about_wrapper{
+        position: fixed;
 		width: 100%;
         padding: 5%;
         padding-bottom: 0;
-        height: calc(100vh - 3.6rem);
+        height: calc(100vh - 4rem);
         background-color:@color-theme;
 		.userinfo{
 			// padding: 4rem;
@@ -233,7 +245,7 @@
                 .el-aside{
                     width:100% !important;
                     .userinfo{
-                        margin: 0 5%;
+                        // margin: 0 5%;
                         margin-bottom: 10%;
                         .base_wrapper{
                             padding-bottom: 9%

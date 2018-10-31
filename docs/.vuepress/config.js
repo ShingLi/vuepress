@@ -52,7 +52,7 @@ module.exports = {
 function cssConfig () {
     return [
         {
-            title: 'css Sticky footers',
+            title: 'Css',
             collapsable: false,
             children: [
                 ''
@@ -64,7 +64,7 @@ function cssConfig () {
 function javascriptConfig () {
     return [
         {
-            title:'ES5 & ES6标准入门',
+            title:'ES5&ES6标准入门',
             collapsable: false,
             children: [
                 '',

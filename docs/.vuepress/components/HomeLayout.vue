@@ -1,7 +1,9 @@
 <template>
-    <div class="home-wrapper">
-    	<canvas class="canvas"></canvas>
-    </div>
+    <transition name='slide'>
+        <div class="home-wrapper">
+    	    <canvas class="canvas"></canvas>
+        </div>
+    </transition>
 </template>
 <script>
 	import canvas from '../public/js/canvas'

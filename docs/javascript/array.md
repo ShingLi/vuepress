@@ -183,7 +183,7 @@
 ```
 
 上面的代码使我们自定义的 类数组对象，因为没有部署 Iterator 接口所以无法使用扩张运算符，
-但是可以用提到的 Array.from() 方法将其转为真正的数组。 ***类数组对象，简单的说就是有length 的json 对象***
+但是可以用提到的 Array.from() 方法将其转为真正的数组。 ***类数组对象，本质就是有length 属性的对象***
 
 #### 6. Map 和 Set结构 ,Generator
 
@@ -196,7 +196,53 @@
         [3, 'three']
     ])
     console.log(map)
+    //  暂时不理解Map 和Set 结构
 ```
+
+## 2.Array.from()
+
+Array.form 方法可以将2类对象转为真正的数组: 类似数组的对象(Array-like Object) 和可遍历的对象(Iterator) 包括ES6 的Map和Set
+
+```js
+    const ArrayLike = {
+        '0': 'one',
+        '1': 'two',
+        '2': 'three',
+        '3': 'four',
+        length: 4
+    }
+    // 转为真正的数组
+    // es5
+    Array.prototype.slice.call(ArrayLike)
+
+    [].slice.call(ArrayLike)
+    [].concat.call(ArrayLike)
+    // es6
+    Array.from(ArrayLike)
+```
+
+上面的代码ES5有3种写法，但是后面2种是前面代码的缩写。劫持数组原型上方法clone
+出一个数组的副本
+
+之前的那个扩展运算符也可以将对象转为数组不过只能将部署了Iterator 接口的对象
+转为数组 比如字符串 map set
+
+```js
+    let arr = Array.from({length:3})
+    arr // [undefined, undefined, undefined]
+```
+
+Array.form() 还接受第二个参数，作用类似于数组的 map()，用来对每个元素进行处理，然后将返回值
+放入返回的数组中
+
+```js
+    Array.from(ArrayLike).map(x => x * x )
+    Array.from(ArrayLike, x => x * x)
+```
+
+## 3.Array.of()
+
+***将一组值转为数组***
 
 ## 9.数组实例的 flat()
 

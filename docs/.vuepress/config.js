@@ -72,7 +72,8 @@ function javascriptConfig () {
                 'function',
                 'array',
                 'promise',
-                'class'
+                'class',
+                'extendsClass'
             ]            
         }
     ]
@@ -87,7 +88,8 @@ function vueConfig () {
                 '',
                 'Ide',
                 'vant-SwipeCell',
-                'vue-config'
+                'vue-config',
+                'transition'
             ]
         }
     ]

@@ -101,7 +101,8 @@ function reactConfig () {
             title: 'React.js',
             collapsable: false,
             children: [
-                ''
+                '',
+                'concept'
             ]
         }
     ]

@@ -52,10 +52,10 @@ module.exports = {
 function cssConfig () {
     return [
         {
-            title: 'css Sticky footers',
+            title: 'Css',
             collapsable: false,
             children: [
-                ''
+                'animation'
             ]
         }
     ]

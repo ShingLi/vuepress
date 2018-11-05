@@ -108,7 +108,7 @@
 </script>
 <style lang="less">
     .slide-enter-active,.slide-leave-active{
-        transition: all .4s
+        transition: all 1.5s
     }
     .slide-enter, .slide-leave-to{
         transform: translate3d(100%, 0, 0)
@@ -137,7 +137,7 @@
 		width: 100%;
         padding: 5%;
         padding-bottom: 0;
-        height: calc(100vh - 4rem);
+        height: calc(100vh - 3.6rem);
         background-color:@color-theme;
 		.userinfo{
 			// padding: 4rem;

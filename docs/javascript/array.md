@@ -57,7 +57,7 @@
     // ES5
     const arr1 = [1, 2, 3]
     const arr2 = [3, 4, 5]
-    Array.prototype.push.apply(arr1, arr2)
+    [].push.apply(arr1, arr2)
     // ES6
     arr1.push(...arr2)
 ```
@@ -265,6 +265,39 @@ Array() 构造函数在一个参数的时候行为表现不一致，一个是一
         return [].slice.call(arguments)
     }
 ```
+
+可以用下面的代码模拟实现
+
+```js
+    function ArrayOf () {
+        return [].slice.call(arguments)
+    }
+```
+
+## 4.数组实例的 copyWithin()
+
+## 5.数组实例的 find() 和findIndex()
+
+数组实例的find()，用于找出第一个符合条件的数组成员，它的参数是一个回调函数,所有的成员依次执行该函数
+直到找到第一个返回值为true 的成员，找不到返回undefined
+
+```js
+    [1, 2, 3, 4, 5].find(n => n > 4)
+    // 5
+```
+
+数组实例的findindex() 返回第一个符合条件的数组成员的位置
+
+## 6.数组实例的 fill()
+
+## 7.数组实例的 entries(), keys(), values()
+
+上面的三个方法都是对数组进行遍历的, entries() 是对键值对的遍历，keys() 是对数组键名的遍历，values() 是对键值的遍历，
+他们都返回一个遍历器对象 (Iterator)
+
+## 8.数组实例的includes()
+
+`Array.prototype.includes` 返回一个布尔值，表示某一个数组是否包含给定的值
 
 ## 9.数组实例的 flat()
 

@@ -55,7 +55,7 @@ function cssConfig () {
             title: 'Css',
             collapsable: false,
             children: [
-                ''
+                'animation'
             ]
         }
     ]

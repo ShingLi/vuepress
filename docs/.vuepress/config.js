@@ -38,6 +38,7 @@ module.exports = {
             '/css/': cssConfig(),
             '/koa/': koaConfig(),
             '/vue/': vueConfig(),
+            '/react/': reactConfig(),
             '/javascript/': javascriptConfig(),
             '/chinesePoetry/':chinesePoetryConfig()
         },
@@ -90,6 +91,17 @@ function vueConfig () {
                 'vant-SwipeCell',
                 'vue-config',
                 'transition'
+            ]
+        }
+    ]
+}
+function reactConfig () {
+    return [
+        {
+            title: 'React.js',
+            collapsable: false,
+            children: [
+                ''
             ]
         }
     ]

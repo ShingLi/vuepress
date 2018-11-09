@@ -1,6 +1,6 @@
 <template>
     <transition name='slide'>
-        <div class="home-wrapper">
+        <div class="home-wrapper" ref='wrapper'>
     	    <canvas class="canvas"></canvas>
         </div>
     </transition>
@@ -10,14 +10,19 @@
 	import vFooter from './views/footer'
 	export default {
 	    name:'home',
-	    mounted() {
+	    components:{
+	    	vFooter
+        },
+        mounted() {
 	    	setTimeout(() => {
                 canvas()
             },26)
-	    },
-	    components:{
-	    	vFooter
-	    }
+        },
+        updated () {
+            let h = document.body.clientHeight
+            let height = document.getElementsByTagName('header')[0].clientHeight
+            this.$refs.wrapper.style.height = h - height -1 +'px'
+        }
 	}
 </script>
 <style lang="less">

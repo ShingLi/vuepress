@@ -133,7 +133,7 @@
         -moz-osx-font-smoothing: grayscale;
     }
 	.about_wrapper{
-        position: fixed;
+        position: relative;
 		width: 100%;
         padding: 5%;
         padding-bottom: 0;

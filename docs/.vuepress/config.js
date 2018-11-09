@@ -25,6 +25,7 @@ module.exports = {
                 items: [
                     { text: 'CSS', link: '/css/'},
                     { text: 'Vue', link: '/vue/'},
+                    { text: 'React', link: '/react/'},
                     { text: 'Koa', link: '/koa/'},
                     { text: 'JavaScript', link: '/javascript/'},
                     { text: 'ChinesePoetry', link: '/chinesePoetry/'}
@@ -72,6 +73,7 @@ function javascriptConfig () {
                 'object',
                 'function',
                 'array',
+                'object6',
                 'promise',
                 'class',
                 'extendsClass'
@@ -102,7 +104,8 @@ function reactConfig () {
             collapsable: false,
             children: [
                 '',
-                'concept'
+                'jsx',
+                'Components'
             ]
         }
     ]

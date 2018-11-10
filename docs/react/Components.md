@@ -12,6 +12,8 @@
 
 这个是一个函数式组件，接受一个props 参数，并且 返回一个react 元素，字面上看是一个函数
 
+## 渲染一个组件
+
 ```js
     import React, { Component } from 'react'
 
@@ -41,3 +43,27 @@
 
 >组件名称都是大写字母开始,
 >`<div/>` 代表一个DOM 标签，而`<Welcome/>` 代表一个组件
+
+## 合成组件
+
+组件可以在他们的输出中引用其他组件
+
+```js
+    function Welcome (props) {
+        const el = <h1>hello {props.name}</h1>
+        return el
+    }
+    function App () {
+        return (
+            <div>
+                <Welcome name='Jane'/>
+                <Welcome name='Zhen'/>
+                <Welcome name='Qi'/>
+            </div>
+        )
+    }
+    ReactDOM.render(
+        <APP/>,
+        document.getElementById('root')
+    )
+```

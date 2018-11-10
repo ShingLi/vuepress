@@ -49,6 +49,8 @@
                                     <el-progress :percentage="60" color="#2db7f5"></el-progress>
                                     <code>Vue</code>
                                     <el-progress :percentage="69" color="#19be6b"></el-progress>
+                                     <code>React</code>
+                                    <el-progress :percentage="1" color="#19be6b"></el-progress>
                             </div>
                             </div>
                         </el-main>

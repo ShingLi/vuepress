@@ -25,8 +25,19 @@
             )
         }
     }
-    React.redner(
+    ReactDOM.render(
         <Welcome name= 'Jane'/>,
         docuemnt.getElemetById('root')
     )
 ```
+
+这个是一个类组件的，接受外界传来的一个Props (属性，property == properties) </br>
+这里的执行顺序是
+
++ 1.调用`ReactDOM.render()` 方法并向其中传入 `<Welcome/ name= 'Jane'>` 元素
++ 2.然后React调用 `<Welcome/>` 组件，并传入{name ='Jane'} 作为props 对象
++ 3.`<Welcome/>`组件返回 `<h1>hello Jane</h1>`
++ 4.ReactDOM 更新DOM 使其显示为 hello Jane
+
+>组件名称都是大写字母开始,
+>`<div/>` 代表一个DOM 标签，而`<Welcome/>` 代表一个组件

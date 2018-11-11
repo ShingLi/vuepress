@@ -1,6 +1,6 @@
 <template>
     <transition name='slide'>
-        <div class="home-wrapper" ref='wrapper'>
+        <div class="home-wrapper">
     	    <canvas class="canvas"></canvas>
         </div>
     </transition>
@@ -13,15 +13,8 @@
 	    components:{
 	    	vFooter
         },
-        mounted() {
-	    	setTimeout(() => {
-                canvas()
-            },26)
-        },
-        updated () {
-            let h = document.body.clientHeight
-            let height = document.getElementsByTagName('header')[0].clientHeight
-            this.$refs.wrapper.style.height = h - height -1 +'px'
+        mounted () {
+            canvas()
         }
 	}
 </script>
@@ -29,15 +22,13 @@
     .home-wrapper{
         font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
         color: #333;
+        position: relative;
+        top:3.6rem;
+        width: 100%;
+        bottom: 0;
+        overflow: hidden;
 		.canvas{
-			position: absolute;
-            top:0;
-            bottom: 0;
-            left: 0;
-            z-index: 0;
-            width: 100%;
-            pointer-events: none;
-            // background-color: #e6ecf0;
+            
 		}
     }
 </style>

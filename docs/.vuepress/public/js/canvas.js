@@ -8,7 +8,7 @@ const canvas = () =>{
         x = c.getContext('2d'),
         pr = window.devicePixelRatio || 1,
         w = window.innerWidth,
-        h = window.innerHeight - 0,
+        h = window.innerHeight - height - 10,
         f = 90,
         q,
         m = Math,

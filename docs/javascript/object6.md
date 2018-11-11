@@ -194,7 +194,7 @@ ES5的变通的方法
 
 #### Notice
 
-##### 1. shallowClone
+##### 1.shallowClone
 
 `Object.assign()` 方法实行的是shallowClone
 
@@ -208,4 +208,68 @@ ES5的变通的方法
     const z = Object.assign(Jane)
     Jane.gender.gender = 'man'
     z.gender.gender = 'man'
+```
+
+#### 2.同名属性的替换
+
+```js
+    const target = { a: {b:'c', d:'e'}}
+    const source = { a: {b:'f'}}
+    Object.assign(target, source) // {a:{b:'f'}}
+```
+
+对于这种嵌套的对象，一旦遇到同名属性， `Object.assin()` 的处理是替换而不是添加
+
+#### 3.数组的处理
+
+`Object.assign` 可以用来处理数组，但是会把数组当成对象。
+
+```js
+    Object.assign([1,2,3,4], ['a','b']) // ['a','b',3,4]
+```
+
+#### 4.取值函数的处理
+
+------
+
+### 常见用法
+
+#### 1.为对象添加属性
+
+```js
+    class Point {
+        constructor (x, y) {
+            Object.assign(this,{x, y})
+        }
+    }
+    // 将x 属性和 Y属性 添加到Point 类的对象实例
+```
+
+#### 2.为对象添加方法
+
+```js
+    Object.assign(SomeClass.prototype, {
+        someMethod (arg1, arg2) {
+            ...
+        },
+        anotherMethod (arg1, arg2) {
+            ...
+        }
+    })
+```
+
+#### 3.克隆对象
+
+```js
+    function (origin) {
+        return Object.assign({}, origin)
+    }
+    // 不过这种拷贝只能拷贝原始对象自身的值，它继承的值是无法拷贝的，如果想保持继承连需要用 Objce.create
+```
+
+```js
+    function clone (origin) {
+        let originProto = Object.getPrototypeOf(origin)
+        return Object.assign(Object.create(originProto), origin)
+    }
 ```

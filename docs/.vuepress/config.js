@@ -105,7 +105,8 @@ function reactConfig () {
             children: [
                 '',
                 'jsx',
-                'Components'
+                'Components',
+                'statelifecycle'
             ]
         }
     ]

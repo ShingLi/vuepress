@@ -110,7 +110,8 @@
 </script>
 <style lang="less">
     .slide-enter-active,.slide-leave-active{
-        transition: all 1.5s
+        transition: all 1s;
+        position: fixed;
     }
     .slide-enter, .slide-leave-to{
         transform: translate3d(100%, 0, 0)

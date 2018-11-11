@@ -264,7 +264,8 @@ ES5的变通的方法
     function (origin) {
         return Object.assign({}, origin)
     }
-    // 不过这种拷贝只能拷贝原始对象自身的值，它继承的值是无法拷贝的，如果想保持继承连需要用 Objce.create
+    // 不过这种拷贝只能拷贝原始对象自身的值，它继承的值是无法拷贝的，
+    //如果想保持继承连需要用 Objce.create
 ```
 
 ```js

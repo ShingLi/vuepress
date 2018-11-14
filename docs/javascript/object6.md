@@ -274,3 +274,23 @@ ES5的变通的方法
         return Object.assign(Object.create(originProto), origin)
     }
 ```
+
+------
+
+## 6.super关键字
+
+`this`关键字总是指向函数所在的当前对象，`super` 指像当前对象的原型对象
+
+```js
+    const Person = {
+        foo: 'hello'
+    }
+    const Jane = {
+        foo: 'world',
+        find () {
+            return super.foo
+        }
+    }
+    Object.setPrototypeOf(Jane, Person)
+    Jane.find()
+```

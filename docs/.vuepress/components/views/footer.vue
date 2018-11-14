@@ -21,8 +21,8 @@
         text-align: center;
     }
     html{
-        @media screen{
-            @media (min-width: 20px){
+        @media screen {
+            @media (min-width: 320px){
                 ._footer{
                     line-height: 60px;                    
                     font-size:7px;
@@ -44,6 +44,12 @@
                 ._footer{
                     bottom: 0;
                     font-size:1rem;
+                }
+            }
+            @media (min-width:1600px) {
+                ._footer{
+                   font-size: 16px;
+                   line-height: 50px;
                 }
             }
         }

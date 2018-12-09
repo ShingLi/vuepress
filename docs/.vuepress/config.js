@@ -26,9 +26,9 @@ module.exports = {
                     { text: 'CSS', link: '/css/'},
                     { text: 'Vue', link: '/vue/'},
                     { text: 'React', link: '/react/'},
-                    { text: 'Koa', link: '/koa/'},
-                    { text: 'JavaScript', link: '/javascript/'},
-                    { text: 'ChinesePoetry', link: '/chinesePoetry/'}
+                    // { text: 'Koa', link: '/koa/'},
+                    { text: 'JavaScript', link: '/javascript/'}
+                    // { text: 'ChinesePoetry', link: '/chinesePoetry/'}
                 ]
             },
             { text: '关于', link: '/about/'},
@@ -37,11 +37,11 @@ module.exports = {
         ],
         sidebar: {
             '/css/': cssConfig(),
-            '/koa/': koaConfig(),
+            // '/koa/': koaConfig(),
             '/vue/': vueConfig(),
             '/react/': reactConfig(),
-            '/javascript/': javascriptConfig(),
-            '/chinesePoetry/':chinesePoetryConfig()
+            '/javascript/': javascriptConfig()
+            // '/chinesePoetry/':chinesePoetryConfig()
         },
         sidebarDepth: 4,
         lastUpdated: 'Last Updated',

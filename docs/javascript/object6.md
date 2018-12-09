@@ -1,4 +1,4 @@
-# ES6.Object的扩展
+# 对象的扩展
 
 ## 1.属性的简洁表示法
 
@@ -279,18 +279,65 @@ ES5的变通的方法
 
 ## 6.super关键字
 
-`this`关键字总是指向函数所在的当前对象，`super` 指像当前对象的原型对象
+`this`关键字总是指向函数所在的当前对象(谁拥有这个对象)，`super` 指当前对象的原型对象
 
 ```js
-    const Person = {
-        foo: 'hello'
+    const Prototype = {
+        name: "foo"
     }
-    const Jane = {
-        foo: 'world',
-        find () {
-            return super.foo
+    const inheritance = {
+        say () {
+            console.log(super.name)
         }
     }
-    Object.setPrototypeOf(Jane, Person)
-    Jane.find()
+    Object.setPrototypeOf(inheritance, Prototype)
+    inheritance.say()
+    //
+```
+
+## 7.函数的扩展运算符
+
+```js
+    const [x, ...y] = [1,2,3]
+    x // 1
+    y // [2,3]
+```
+
+es2018 将扩展运算符引入了对象
+
+------
+
+### 解构赋值
+
+对象的解构赋值用于从一个对象取值, 想当于将目标对象自身的所有可遍历的(enumerable)丶但尚未被读取的属性，
+分配到指定的对象上面。所有的键和它们的值，都会拷贝到新对象上面
+
+```js
+    let { x, y, ...z } = { x:1, y:2, c:3, d:4 }
+```
+
+上面的代码中，变量z是解构赋值所在的对象。它获取等号右边的所有尚未读取的键(c 和 d)，将它们连同值一起拷贝
+过来
+
+***等号右边必须不是undefined 和null 否则会报错，因为它们无法转成对象***
+
+***扩展运算符的解构赋值不能复制继承自原型对象的属性***
+
+***扩展运算符后面必须是一个变量不能是一个解构表达式***
+
+```js
+    let obj = { a: { b: 1} }
+    let { ...x } = obj
+    obj.a.b = 2
+    x.a.b // 2
+```
+
+------
+
+#### 对象扩展运算符的应用
+
+```js
+    const hybrid = Object.assign({}, { a:1 })
+    // 等同
+    const hybird = { ...a }
 ```

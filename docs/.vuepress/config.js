@@ -25,6 +25,7 @@ module.exports = {
                 items: [
                     { text: 'CSS', link: '/css/'},
                     { text: 'Vue', link: '/vue/'},
+                    { text: 'Php', link: '/php/'},
                     { text: 'React', link: '/react/'},
                     // { text: 'Koa', link: '/koa/'},
                     { text: 'JavaScript', link: '/javascript/'}
@@ -39,6 +40,7 @@ module.exports = {
             '/css/': cssConfig(),
             // '/koa/': koaConfig(),
             '/vue/': vueConfig(),
+            '/php/': phpConfig(),
             '/react/': reactConfig(),
             '/javascript/': javascriptConfig()
             // '/chinesePoetry/':chinesePoetryConfig()
@@ -54,10 +56,11 @@ module.exports = {
 function cssConfig () {
     return [
         {
-            title: 'Css',
+            title: 'css',
             collapsable: false,
             children: [
-                'animation'
+                'animation',
+                'css-stick-footer'
             ]
         }
     ]
@@ -130,6 +133,18 @@ function koaConfig() {
             children: [
                 '',
                 'start'
+            ]
+        }
+    ]
+}
+
+function phpConfig() {
+    return [
+        {
+            title:'php',
+            collapsable: false,
+            children: [
+                ''
             ]
         }
     ]

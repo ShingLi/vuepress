@@ -145,7 +145,8 @@ function phpConfig() {
             collapsable: false,
             children: [
                 '',
-                'induction'
+                'induction',
+                'variable'
             ]
         }
     ]

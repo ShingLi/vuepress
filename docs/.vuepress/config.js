@@ -144,7 +144,8 @@ function phpConfig() {
             title:'php',
             collapsable: false,
             children: [
-                ''
+                '',
+                'induction'
             ]
         }
     ]

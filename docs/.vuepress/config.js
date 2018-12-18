@@ -77,6 +77,7 @@ function javascriptConfig () {
                 'function',
                 'array',
                 'object6',
+                'symbol',
                 'promise',
                 'class',
                 'extendsClass'

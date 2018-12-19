@@ -147,7 +147,8 @@ function phpConfig() {
             children: [
                 '',
                 'induction',
-                'variable'
+                'variable',
+                'form'
             ]
         }
     ]

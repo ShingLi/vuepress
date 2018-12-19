@@ -1,5 +1,6 @@
-# 概述
+# Symbol
 
+## 概述
 ES5对象的属性名都是字符串，很容易造成属性名的冲突。但是symbol是独一无二，这点可以从根本上解决属性名冲突的问题
 
 es6引入了新的原始数据类型```Symbol```,表示独一无二的值。它是JavaScript语言的第七种数据类型，前六种：
@@ -24,3 +25,40 @@ Symbol值通过Symbol 函数生成，这就是说，对象的属性名现在有�
     let ss = Symbol('bar')
     s.toString() // 'Symbol(foo)'
 ```
+
+```Symbol```可以接受一个对象作为参数，但是最终调用的是这对象的toString(),将其转为字符串然后才生成一个Symbol值
+
+```Symbol```是不可以直接与其它类型的值进行运算，否则会报错
+
+```js
+    let sym = Symbol('my Symbol')
+    'my girlfriend' + sym // 报错
+```
+
+但是Symbol 值可以显式转为字符串
+
+```js
+    Strig(sym)
+    sym.toString()
+    Boolean(sym)
+    // 但是不能转为数值
+```
+
+## 作为属性名的Symbol
+
+由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符
+
+```js
+    let name = Symbol()
+    let person = {
+        [name]: 'zhen'
+    }
+    person[name] = 'cao'
+    Object.defineProperty(person, name , {
+       value: 'cheng'
+    })
+```
+
+作为属性名的时候不能用 . 运算符 因为.的东西都是字符串 (PHP中 . 可以链接字符串)
+
+## 消除魔术字符串

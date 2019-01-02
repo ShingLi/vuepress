@@ -31,5 +31,31 @@
         return cloneObj
     }
     clone(person)
-    
+```
+
+## 封装
+
+## 继承
+
+***节约内存，做到代码重用***
+
+如何：</br>
+
+原型对象(prototype/ __proto__)
+
+## 多态
+
+------
+
+```js
+    // IE8 不支持indexOf  shim
+    if (Array.prototype.indexOf === undefined) {
+        Array.prototype.indexOf = function (val, fromi) {
+            !fromi && (fromi = 0)
+            for (; fromi < this.length; fromi++ ) {
+                if (this[fromi] === val) return fromi
+            }
+            return -1
+        }
+    }
 ```

@@ -69,3 +69,21 @@
         funs[1]()
         funs[2]()
 ```
+
+上面的代码可以改下
+
+```js
+    // 代码的思路来自与 冴羽 深入javascript 类似组部分
+    function outer () {
+        for (var i =0, arr = []; i < 3; i++ ) {
+            (arr[i] = function () {
+                console.log(arguments.callee.i)
+            }).i = i
+        }
+        return arr
+    }
+    let funs = outer ()
+        funs[0]()
+        funs[1]()
+        funs[2]()
+```

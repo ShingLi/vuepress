@@ -70,3 +70,5 @@
     foo(1).length // 1 实参的长度
     foo() // 3 形参长度
 ```
+
+传入的参数 实参和arguments的值会共享，但是没有传入的时候参数和arguments值不共享，比如上面的age 和gender 参数

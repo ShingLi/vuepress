@@ -95,6 +95,12 @@ ES5 写法
     const zhen = new Person('zhen', 'lady')
 ```
 
+------
+
+->
+
+------
+
 ES6 写法
 
 ```js

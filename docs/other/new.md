@@ -48,3 +48,4 @@
     createObject(Otaku, "曹珍", 18)
 ```
 
+

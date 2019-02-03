@@ -39,9 +39,12 @@
 
                 if (timer) clearTimeout(timer)
                 if (immediate) {
-                    
-                }else
-                    timer = setTimeout(() => func.call(this,args), wait)
+                    callNow = !timer
+                    timer = setTimeout(() => {
+                        timer = null
+                    },wait)
+                    if (callNow) func.apply(this, arguments) 
+                }else timer = setTimeout(() => func.call(this,args), wait)
             }
         }
 

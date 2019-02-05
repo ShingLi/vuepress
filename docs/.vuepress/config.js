@@ -27,6 +27,7 @@ module.exports = {
                     { text: 'Vue', link: '/vue/'},
                     { text: 'Php', link: '/php/'},
                     { text: 'React', link: '/react/'},
+                    { text: 'other', link: '/other/'},
                     // { text: 'Koa', link: '/koa/'},
                     { text: 'JavaScript', link: '/javascript/'}
                     // { text: 'ChinesePoetry', link: '/chinesePoetry/'}
@@ -42,7 +43,7 @@ module.exports = {
             '/vue/': vueConfig(),
             '/php/': phpConfig(),
             '/react/': reactConfig(),
-            '/javascript/': javascriptConfig()
+            '/other/': otherConfig()
             // '/chinesePoetry/':chinesePoetryConfig()
         },
         sidebarDepth: 4,
@@ -149,6 +150,22 @@ function phpConfig() {
                 'induction',
                 'variable',
                 'form'
+            ]
+        }
+    ]
+}
+
+function otherConfig() {
+    return [
+        {
+            title:'高程',
+            collapsable: false,
+            children: [
+                '',
+                'bind',
+                'closure',
+                'new',
+                'oop'
             ]
         }
     ]

@@ -451,7 +451,18 @@ instanceof 运算符。instanceof 要求左边运算符是一个对象右边是�
 在子类型的内部调用超类型的构造函数，其实就是为了解决原型继承带来的引用类型实例共享的问题
 
 ```js
-   
+    function Parent () {
+        this.colors = [ "red", "green" ]
+    }
+    function Child () {
+        Parent.call(this)
+    }
+    Child.prototype = new Parent()
+    var child_1 = new Child()
+    var child_2 = new Child()
+    child_1.colors.push("yellow") // 3
+
+    child_2.colors // ["red","green"]
 ```
 
 小红书在P 168 页是这么描述的 --

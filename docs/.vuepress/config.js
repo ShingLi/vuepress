@@ -43,7 +43,8 @@ module.exports = {
             '/vue/': vueConfig(),
             '/php/': phpConfig(),
             '/react/': reactConfig(),
-            '/other/': otherConfig()
+            '/other/': otherConfig(),
+            '/javascript/': javascriptConfig()
             // '/chinesePoetry/':chinesePoetryConfig()
         },
         sidebarDepth: 4,

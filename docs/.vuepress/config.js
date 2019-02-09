@@ -7,7 +7,7 @@ module.exports = {
             lang: 'zh-CN'
         }
     },
-    port:8081,
+    port: 8081,
     dest: './dist',
     head: [
         ['link', { rel: 'icon', href: '/img/logo.ico' }],
@@ -18,16 +18,16 @@ module.exports = {
         ]
     ],
     themeConfig: {
-        nav:[
+        nav: [
             { text: '主页', link :'/'},
             {
                 text: '博文',
                 items: [
-                    { text: 'CSS', link: '/css/'},
-                    { text: 'Vue', link: '/vue/'},
-                    { text: 'Php', link: '/php/'},
-                    { text: 'React', link: '/react/'},
-                    { text: 'other', link: '/other/'},
+                    { text: 'CSS', link: '/css/' },
+                    { text: 'Vue', link: '/vue/' },
+                    { text: 'Php', link: '/php/' },
+                    { text: 'React', link: '/react/' },
+                    { text: 'other', link: '/other/' },
                     // { text: 'Koa', link: '/koa/'},
                     { text: 'JavaScript', link: '/javascript/'}
                     // { text: 'ChinesePoetry', link: '/chinesePoetry/'}

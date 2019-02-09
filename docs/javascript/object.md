@@ -422,7 +422,9 @@ instanceof 运算符。instanceof 要求左边运算符是一个对象右边是�
     }
     SubType.prototype = new SuperType()
     const instance = new SubType()
-    instance.getSuperValue() // false
+    instance.getSuperValue() // true
+    //  上面的代码其实不正确的，因为添加的代码在实例之前，所以添加的方法是在原来的原型对象上，继承
+    //  之后并没有这些方法所以是true并不是false
 ```
 
 上面的代码第一个方法是添加一个原先不存在的方法，第二个方法是添加一个父类型中已经存在的方法。但是新添加的

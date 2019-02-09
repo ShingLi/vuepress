@@ -451,60 +451,56 @@ instanceof 运算符。instanceof 要求左边运算符是一个对象右边是�
 在子类型的内部调用超类型的构造函数，其实就是为了解决原型继承带来的引用类型实例共享的问题
 
 ```js
-    function Parent () {
+    function Parent (name) {
         this.colors = [ "red", "green" ]
+        this.name = name
+        this.sayName = function () {
+            console.log(this.name)
+        }
     }
-    function Child () {
-        Parent.call(this)
+    function Child (name) {
+        Parent.call(this, name)
     }
     Child.prototype = new Parent()
-    var child_1 = new Child()
+    var child_1 = new Child("kevin")
     var child_2 = new Child()
     child_1.colors.push("yellow") // 3
 
     child_2.colors // ["red","green"]
 ```
 
+<!-- 2019、2.9注 -->
+***优点：解决了引用类型造成实例共享的问题***
+***优点：可以在Child 像Parent传递参数***
+***缺点：每次new 的时候都会创建一遍方法,构造函数的问题***
+
 小红书在P 168 页是这么描述的 --
 
 子类型调用超类型的构造函数。通过使用 call() 或者使用 apply()。就是在未来的新建的实例的环境下调用SuperType
 构造函数。新的SubType 对象上执行SuperType 函数中定义的所有对象初始化代码
 
-### 3组合继承
+### 3组合继承(伪经典继承)
 
-组合继承是最常用的继承方式。使用原型链实现对原型属性和方法的继承，通过构造函数实现对实例属性的继承
+组合继承是最常用的继承方式。使用**原型链实现对原型属性和方法的继承，通过构造函数实现对实例属性的继承**
 
 ```js
-    function SuperType (name) {
-        this.name = name // 构造函数传参
-        this.colors = ['red', 'blue', 'green']
+    function Parent (name) {
+        this.colors = [ "red", "green"]
+        this.name = name
     }
-
-    SuperType.prototype.sayName = function () {
-        alert(this.name)
+    Parent.prototype.sayName = function () {
+        console.log(this.name)
     }
-
-    function SubType (name, gender) {
-        // 继承属性
-        SuperType.call(this,name)
-        this.gender = gender
+    function Child (name, age) {
+        Parent.call(this, name)
+        this.age = age
     }
-
-    SubType.prototype = new SuperType ()
-    SubType.prototype.constructor = SubType
-    SubType.prototype.sayGender = function () {
-        alert(this.gender)
-    }
-
-    const instance1 = new SubType ('珍', 'lady')
-    instance1.colors.push('black') // red,blue,green,black
-    instance1.sayName () // 珍
-    instance1.sayGender() // lady
-
+    Child.prototype = new Parent()
+    Child.prototype.constructor = Child
+    var child_1 = new Child("kevin",18)
+    var child_2 = new Child("jack", 20)
 ```
 
-上面的代码我是这么理解的 new SubType() 调用的构造函数，此刻的构造函数就是一个对象，这个对象里面有 gender
-属性 属性值为 'lady' , name 属性值为 '珍' 还有一个数组 colors。 这个构造函数对象同时还有一个__proto__
-属性属性值指向 SuperType 的原型对象
+***优点：解决了经典继承的问题，就是每次实例的时候函数都会创建一遍，没有复用性可言***
 
 -> 剩下的代码在other里面

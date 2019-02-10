@@ -71,7 +71,7 @@ JavaScript 的传统方法是通过构造函数定义并生成新对象
 取得对象的原型对象
 
 ```js
-    Object.getPrototypeOf()
+    Object.getPrototypeOf() // ES6 class的继承第二章节
 ```
 
 检测对象的属性存在与实例还是原型中
@@ -105,6 +105,7 @@ ES6 写法
 
 ```js
     class Person {
+        // 构造方法，类相当于实例的原型
         constructor (name, gender) {
             this.name = name
             this.gender = gender
@@ -118,7 +119,7 @@ ES6 写法
 
 :kissing_heart: 女神 哦！忘了我是个单身狗······· :sweat_smile:
 
-Note 定义类的时候前面不能加上function 保留字
+Note 定义类的时候前面不能加上function 保留字，并且类内部不能用逗号
 
 ```js
     class Person {
@@ -167,7 +168,10 @@ constructor方法是类的默认方法，通过new命令生成对象实例时自
         //
     }
     class Person {
-        constructor () {}
+        // 2019/2/10注   之前es6书中这里没有super()
+        constructor (...args) {
+            super(...args)
+        }
     }
 ```
 
@@ -305,3 +309,5 @@ ES6 不提供私有方法。
 ## 8.this 的指向
 
 类的方法内部如果含有this,它默认指向类的实例
+<!-- 2019/2/10 注 -->
+<!-- 但是静态方法中的this 指向的是类并不是实例对象 -->

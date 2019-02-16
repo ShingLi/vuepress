@@ -8,8 +8,10 @@
 </head>
 <body>
     <script>
-        var arr = [1,2,3,4,'v',1,"1"]
-        function unique (arr) {
+        var arr = [1,2,3,4,'v',1,"1",'2','2']
+        // # 双层循环 兼容性最好
+
+        var unique = function (arr) {
             var ret = []
             for (var i = 0,len = arr.length; i < len; i++) {
                 for (var j = 0, LEN = ret.length; j < LEN; j++) {
@@ -22,6 +24,38 @@
                 }
             }
         }
+
+        // # 数组有没有值没有就添加，有就不添加
+        function unique_2 (arr) {
+            var ret = []
+            for (var i= 0, len = arr.length; i < len; i++) {
+                !ret.includes(arr[i]) ? ret.push(arr[i]) : ""
+            }
+            return ret
+        }
+
+        // # 排序前后比较去重 当前元素是否和上一个元素相等，相等就重复不添加否则就添加
+        function unique_3 (arr) {
+            const ret = []
+            const sortedArray = arr.sort().concat()
+            var seen
+            console.log(sortedArray)
+            for (var i = 0, len = sortedArray.length; i < len; i++) {
+                // if (sortedArray[i] === sortedArray[i+1]) {
+
+                // } else {
+                //     ret.push(sortedArray[i])
+                //     // 这种写法不优雅，换种写法
+                // } 
+                if (!i || seen !== sortedArray[i]) {
+                    ret.push(sortedArray[i])
+                }
+                seen = sortedArray[i]
+
+            }
+            return ret
+        }
+        
     </script>
 </body>
 </html>

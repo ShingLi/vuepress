@@ -11,7 +11,7 @@
         var arr = [1,2,3,4,'v',1,"1",'2','2']
         // # 双层循环 兼容性最好
 
-        var unique = function (arr) {
+        var unique_1 = function (arr) {
             var ret = []
             for (var i = 0,len = arr.length; i < len; i++) {
                 for (var j = 0, LEN = ret.length; j < LEN; j++) {
@@ -55,6 +55,23 @@
             }
             return ret
         }
+
+        // API arr 原数组， sortSign 是否排序
+        function unique (arr, sortSign) {
+			const ret = []
+			var seen
+			for (var i = 0, Len = arr.length; i < Len; i++) {
+				if (sortSign) {
+					if (!i || seen !== arr[i]) {
+						ret.push(arr[i])
+					}
+					seen = arr[i]
+				} else {
+					!ret.includes(arr[i]) ? ret.push(arr[i]) : ''
+				}
+			}
+			return ret
+		}
         
     </script>
 </body>

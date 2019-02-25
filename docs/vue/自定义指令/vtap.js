@@ -3,12 +3,14 @@
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-02-23 23:25:48
- * @LastEditTime: 2019-02-24 22:04:59
+ * @LastEditTime: 2019-02-25 22:10:03
  */
 
 const Tap = (function () {
     const handler = {
         touchStart (e) {
+            // 表单元素的disabled
+            
             let touches = e.touches[0]
             // es6 编程风格推荐对象最后一个加逗号 对象静态化
             const tapGather = {
@@ -32,30 +34,29 @@ const Tap = (function () {
             this.handler (e)
         },
         isTap (slef) {
-            return slef.tapObj.timeStamp < 300 && slef.tapObj.pageX < 10 && slef.tapObj.pageY < 10
+            return slef.tapObj.timeStamp < 300 && Math.abs(slef.tapObj.pageX) < 10 && Math.abs(slef.tapObj.pageY) < 10
         },
     }
     const tap = {
-        inserted (el, binding) {
+        inserted (el, { value, modifiers }) {
             el.tapObj = {}
             el.handler = e => {
-                let { value, modifiers } = binding
+                
                 if (modifiers.stop) e.stopPropagation()
                 if (modifiers.prevent)  e.preventDefault()
-
+                
                 if (value && typeof value === 'object') {
                     let { fn, args } = value
-                    args = args && Array.isArray(args) ? args.unshift(e) : [].unshift(e)
+                    args && Array.isArray(args) ? args.unshift(e) : (args = [],args.unshift(e))
                     if (typeof fn === 'function') {
-                        fn.call(this, args)
-                        args.shift(e)
+                        fn(args)
                     }
                 }
             }
             el.addEventListener ('touchstart', handler.touchStart)
             el.addEventListener ('touchend', handler.touchEnd)
         },
-        updated () {
+        updated (el, { value, modifiers }, vnode) {
 
         },
         unbind () {

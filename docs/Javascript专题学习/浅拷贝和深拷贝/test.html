@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ZH-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试</title>
+</head>
+<body>
+    <script>
+        const exampleArr = [ {name: 'licheng'}, 'hanmeimei' ]
+        var shallow_Clone = function (source) {
+            if (typeof source != 'object') return
+            var ret = source instanceof Array ? [] : {}
+            // debugger
+            for (let k in source) {
+                if (source.hasOwnProperty(k)) {
+                    ret[k] = source[k]
+                }
+            }
+            return ret
+        }
+        const target_arr = shallow_Clone(exampleArr)
+        target_arr[0].name = 'jack'
+        console.log(exampleArr)
+        console.log(target_arr)
+    </script>
+</body>
+</html>

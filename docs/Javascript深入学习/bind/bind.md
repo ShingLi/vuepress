@@ -24,10 +24,12 @@ bind 方法会返回一个函数
 
 ```js
     Function.prototype.bind2 = function (context) {
+        context = context || window
         let { slice } = []
         let args = slice.call(arguments, 1)
         return () => {
-            this.apply(context, args)
+            let ret = this.apply(context, args)
+            return ret
         }
     }
 ```

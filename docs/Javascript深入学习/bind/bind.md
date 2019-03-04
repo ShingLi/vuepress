@@ -23,13 +23,31 @@ bind 方法会返回一个函数
 ## 模拟bind
 
 ```js
+    // 解决   this, 参数， 返回值
     Function.prototype.bind2 = function (context) {
         context = context || window
         let { slice } = []
         let args = slice.call(arguments, 1)
         return () => {
-            let ret = this.apply(context, args)
-            return ret
+            let bindArgs = Array.from(arguments)
+            return ret = this.apply(context, [ ...args, ...bindArgs ])
         }
+    }
+```
+
+this和参数很容易想到，感觉最难的部分就是构造函数了，因为根本想不到，`bind`的返回的函数也可以做构造函数用啊(想不到想不到)
+
+```js
+    Function.prototype.bind2 = function (context) {
+        context = context || window
+        let { slice } = []
+        let slef = this
+        let args = slice.call(arguments, 1)
+        var f = function () {
+            let bindArgs = Array.from(arguments)
+            return ret = slef.apply(this instanceof f ? this : context, [ ...args, ...bindArgs ])
+        }
+        f.prototype = this.prototype
+        return f
     }
 ```

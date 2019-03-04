@@ -45,7 +45,5 @@
         // 返回this对象
         return typeof ret === 'object' ? ret || obj : obj
     }
-    createObject(Otaku, "曹珍", 18)
+    createObject(Otaku, "jack", 18)
 ```
-
-

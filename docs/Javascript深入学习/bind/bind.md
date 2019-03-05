@@ -47,7 +47,10 @@ this和参数很容易想到，感觉最难的部分就是构造函数了，因�
             let bindArgs = Array.from(arguments)
             return ret = slef.apply(this instanceof f ? this : context, [ ...args, ...bindArgs ])
         }
-        f.prototype = this.prototype
+        // f.prototype = this.prototype
+        var Fn = function () {}
+        Fn.prototype = this.prototype
+        f.prototype = new Fn()
         return f
     }
 ```

@@ -41,3 +41,24 @@ this的问题 event对象 立即执行 返回值 取消
 ```
 
 > 需求， 立即执行
+
+```js
+    let ele = document.querySelector('#container'), count = 0;
+    const func = function (e) {
+        this.innerText = count++
+        console.log(e)
+    }
+    const debound = function (func, wait, immediate) {
+        var timer, count = 1
+
+        return function () {
+            immediate && !timer && func.apply(this, arguments)
+            clearTimeout(timer)
+            timer =  setTimeout(() => {
+                func.apply(this, arguments)
+            },wait)
+        }
+    }
+    ele.onmousemove  = debound(func, 1000, true)
+    // 代码有问题 第一次会执行2次
+```

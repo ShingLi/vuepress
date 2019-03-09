@@ -21,36 +21,25 @@
 <body>
     <div id="container"></div>
     <script>
-        let element = document.getElementById('container')
-        let count = 0
-        // element.onmousemove = userAction
-        element.onmousemove = debounce(userAction, 1000)
+        let ele = document.querySelector('#container'), count = 0;
 
-        function userAction (e) {
-            element.innerHTML = count +=1
-            // console.log(e)
+        
+        const func = function (e) {
+            this.innerText = count++
+            console.log(e)
         }
+        const debound = function (func, wait, immediate) {
+            var timer, count = 1
 
-        // 函数防抖
-        function debounce (func, wait, immediate) {
-            var timer
             return function () {
-                var args = arguments
-
-                if (timer) clearTimeout(timer)
-                if (immediate) {
-                    callNow = !timer
-                    timer = setTimeout(() => {
-                        timer = null
-                    },wait)
-                    if (callNow) func.apply(this, arguments) 
-                }else timer = setTimeout(() => func.call(this,args), wait)
+                clearTimeout(timer)
+                timer =  setTimeout(() => {
+                    func.apply(this, arguments)
+                },wait)
             }
         }
-
-        // 问题的解决 this 需要之前的this是div 现在的thishiwindow 需要call解决
-        // event对象
-
+        ele.onmousemove  = debound(func, 1000, true)
+        
     </script>
 </body>
 </html>

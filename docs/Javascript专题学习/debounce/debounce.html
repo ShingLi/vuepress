@@ -32,6 +32,7 @@
             var timer, count = 1
 
             return function () {
+                immediate && !timer && func.apply(this, arguments)
                 clearTimeout(timer)
                 timer =  setTimeout(() => {
                     func.apply(this, arguments)

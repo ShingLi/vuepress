@@ -8,10 +8,10 @@
                 element.style.filter = `alpha(opacity=${opacity})`
             }
         },
-        addEvent (type, fn) {
+        addEvent (element, type, fn) {
             const w = window
             if (w.addEventListener) {
-                w.addEventListener(type, fn)
+                element.addEventListener(type, fn)
             } else {
                 w.attachEvent (`on${type}`, fn)
             }
@@ -34,41 +34,78 @@
                 }
             }
         },
-        fadeIn () {
+        fadeIn ( element = this.element, speed = this.options.fadeSpeed ) {
+            let opacity = 0
+            function step () {
+                utils.setOpacity ( element, opacity += speed )
+                if (opacity < 100) {
+                    timr = requestAnimationFrame(step)
+                } else cancelAnimationFrame(timr)
+            }
+            requestAnimationFrame(step)
+        },
+        fadeOut (element = this.element, speed = this.options.fadeSpeed) {
+            let opacity = 100
+            function step () {
+                utils.setOpacity ( element, opacity -= speed )
+                if (opacity > 0) {
+                    timr = requestAnimationFrame(step)
+                } else cancelAnimationFrame(timr)
+            }
+            requestAnimationFrame(step)
+        },
+        handle () {
+            utils.addClass.call(this,'backing')
+        },
+        addClass (className, element = this.element) {
+            
+            if ('classList' in document.documentElement) {
+                if (!element.classList.contains(className)) element.classList.add(className)
+            } else {
+                // className 解决
+            }
+        },
+        removeClass () {
             
         }
     }
     class ScrollToTop {
-        constructor (element, options) {
-            this.element  = typeof element == 'string' ? document.querySelector(element) : element
+        constructor ( element, options ) {
+            this.element  = typeof element == 'string' ? document.querySelector( element ) : element
             this.options = { ...this[defaultOptions], ...options }
             this.init ()
         }
         init () {
             this.hideElment ()
             this.bindScrollEvent ()
+            this.bindClickScrollToTop ()
         }
         hideElment () {
-            utils.setOpacity.apply(this)
+            utils.setOpacity.apply (this)
             this.status = 'hide'
         }
         bindScrollEvent () {
-            utils.addEvent ('scroll', () => {
+            utils.addEvent (window, 'scroll', () => {
                 if (utils.scroll().y > this.options.showWhen) {
                     if (this.status == 'hide') {
-                        utils.fadeIn ()
+                        utils.fadeIn.apply(this)
                         this.status = 'show'
                     }
                 } else {
                     if (this.status == 'show') {
-                        utils.fadeOut ()
+                        utils.fadeOut.apply (this)
                         this.status = 'hide'
                     }
                 }
             })
         }
+        bindClickScrollToTop () {
+            utils.addEvent ( this.element, 'click', utils.handle.bind(this) )
+        }
         [defaultOptions] = {
-            showWhen: 300
+            showWhen: 300,
+            fadeSpeed: 10,
+            redueSpeed: 100
         }
     }
     if (!self.ScrollToTop) self.ScrollToTop = ScrollToTop

@@ -3,7 +3,7 @@
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-03-17 21:54:41
- * @LastEditTime: 2019-03-24 14:06:57
+ * @LastEditTime: 2019-03-24 14:41:00
  */
 
 ;(function () {
@@ -72,11 +72,25 @@
         supportTouch () {
             return 'ontouchstart' in window
         },
+        indexOf (arr, className) {
+            var index = -1, i = 0, length = arr.length;
+            for (; i < length; i++) {
+                if (arr[i] == className) {
+                    index = i
+                    break
+                }
+            }
+            return index
+        },
         addClass (element, className) {
             if ('classList' in element) {
                 if (!element.classList.contains(className)) element.classList.add(className)
             } else {
-                
+                let arr_className = element.className.trim().split(/\s+/)
+                if (utils.indexOf (arr_className, className) === -1) {
+                    arr_className.push(className)
+                }
+                element.className = arr_className.join(' ')
             }
         },
         removeClass (element, className) {

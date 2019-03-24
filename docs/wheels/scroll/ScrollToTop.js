@@ -1,112 +1,179 @@
+/*
+ * @Description: 不兼容ie
+ * @Author: shingli
+ * @LastEditors: Please set LastEditors
+ * @Date: 2019-03-17 21:54:41
+ * @LastEditTime: 2019-03-24 14:06:57
+ */
+
 ;(function () {
-    let defaultOptions = Symbol()
+    // const defaultOptions = Symbol()
+    const root = ( typeof self === 'object' && self.self === self && self) ||
+               ( typeof global === 'object' && global.global === global && global) || (this)
+
     const utils = {
-        setOpacity (element = this.element, opacity = 0) {
+        setOpacity (element, opacity = 0) {
             if (element.style.opacity != null) {
-                element.style.opacity = opacity / 100
+                element.style.opacity  = opacity / 100
             } else {
-                element.style.filter = `alpha(opacity=${opacity})`
+                element.style.filter = `alpha(opacity = ${opacity})`
             }
         },
-        addEvent (element, type, fn) {
-            const w = window
-            if (w.addEventListener) {
-                element.addEventListener(type, fn)
+        addEvent (target, type, f) {
+            if (window.addEventListener) {
+                target.addEventListener(type, f, { capture: false, passive: false })
             } else {
-                w.attachEvent (`on${type}`, fn)
+                target.attachEvent(`on${type}`, f)
             }
         },
-        scroll () {
-            if (window.pageXOffset) {
-                return {
-                    x: window.pageXOffset,
-                    y: window.pageYOffset,
-                }
-            } else if (document.compatMode == 'CSS1Compat') {
+        removeEvent () {
+
+        },
+        getScrollInfo () {
+            if (window.pageXOffset != null) {return {
+                x: pageXOffset,
+                y: pageYOffset,
+            }} else if (document.compatMode == 'CSS1Compat') {
                 return {
                     x: document.documentElement.scrollLeft,
                     y: document.documentElement.scrollTop
                 }
-            } else {
-                return {
-                    x: document.body.scrollLeft,
-                    y: document.body.scrollTop
+            } else return ({
+                x: document.body.scrollLeft,
+                y: document.body.scrollTop
+            })
+        },
+        fadeIn () {
+            var opacity = 0, timer;
+            utils.setOpacity(this.element)
+            const step = () => {
+                utils.setOpacity(this.element, opacity+= this.options.fadeSpeed)
+                if (opacity < 100) {
+                    timer = requestAnimationFrame(step)
+                } else {
+                    cancelAnimationFrame(timer)
                 }
             }
-        },
-        fadeIn ( element = this.element, speed = this.options.fadeSpeed ) {
-            let opacity = 0
-            function step () {
-                utils.setOpacity ( element, opacity += speed )
-                if (opacity < 100) {
-                    timr = requestAnimationFrame(step)
-                } else cancelAnimationFrame(timr)
-            }
             requestAnimationFrame(step)
         },
-        fadeOut (element = this.element, speed = this.options.fadeSpeed) {
-            let opacity = 100
-            function step () {
-                utils.setOpacity ( element, opacity -= speed )
+        fadeOut () {
+            var opacity = 100, timer;
+            utils.setOpacity(this.element, opacity)
+            const step = () => {
+                utils.setOpacity(this.element, opacity-= this.options.fadeSpeed)
                 if (opacity > 0) {
-                    timr = requestAnimationFrame(step)
-                } else cancelAnimationFrame(timr)
+                    timer = requestAnimationFrame(step)
+                } else {
+                    cancelAnimationFrame(timer)
+                }
             }
             requestAnimationFrame(step)
         },
-        handle () {
-            utils.addClass.call(this,'backing')
+        supportTouch () {
+            return 'ontouchstart' in window
         },
-        addClass (className, element = this.element) {
-            
-            if ('classList' in document.documentElement) {
+        addClass (element, className) {
+            if ('classList' in element) {
                 if (!element.classList.contains(className)) element.classList.add(className)
             } else {
-                // className 解决
+                
             }
         },
-        removeClass () {
-            
+        removeClass (element, className) {
+            if ('classList' in element) {
+                if (element.classList.contains(className)) element.classList.remove(className)
+            } else {
+                
+            }
+        },
+        handle () {
+            utils.addClass(this.element, 'backing')
+            var scrollTop = utils.getScrollInfo().y, timer;
+            requestAnimationFrame (f = () => {
+                if (scrollTop > 0) {
+                    // debugger
+                    document.documentElement.scrollTop = scrollTop -= this.options.speed
+                    timer = requestAnimationFrame(f)
+                } else {
+                    cancelAnimationFrame(timer)
+                }
+            })
         }
     }
     class ScrollToTop {
-        constructor ( element, options ) {
-            this.element  = typeof element == 'string' ? document.querySelector( element ) : element
-            this.options = { ...this[defaultOptions], ...options }
+        constructor (element, options) {
+            if (!element && element.nodeType !== 1) {
+                throw new TypeError('目标元素不能为空')
+            }
+            this.element = typeof element === 'string' ? document.querySelector(element) : element
+            this.options = { ...ScrollToTop.defaultOptions, ...options }
             this.init ()
         }
         init () {
-            this.hideElment ()
+            this.hideElement ()
             this.bindScrollEvent ()
-            this.bindClickScrollToTop ()
+            this.attachToTopEvent ()
         }
-        hideElment () {
-            utils.setOpacity.apply (this)
+        hideElement () {
+            utils.setOpacity (this.element)
             this.status = 'hide'
         }
         bindScrollEvent () {
             utils.addEvent (window, 'scroll', () => {
-                if (utils.scroll().y > this.options.showWhen) {
-                    if (this.status == 'hide') {
-                        utils.fadeIn.apply(this)
-                        this.status = 'show'
-                    }
+                if (utils.getScrollInfo ().y > this.options.showWhen) {
+                   if (this.status == 'hide') {
+                       utils.fadeIn.apply(this)
+                       this.status = 'show'
+                   }
                 } else {
                     if (this.status == 'show') {
-                        utils.fadeOut.apply (this)
+                        utils.fadeOut.apply(this)
                         this.status = 'hide'
+                        utils.removeClass(this.element, 'backing')
                     }
                 }
-            })
+            }) 
         }
-        bindClickScrollToTop () {
-            utils.addEvent ( this.element, 'click', utils.handle.bind(this) )
-        }
-        [defaultOptions] = {
-            showWhen: 300,
-            fadeSpeed: 10,
-            redueSpeed: 100
+        attachToTopEvent () {
+            if (utils.supportTouch ()) {
+                let touch = {}
+                utils.addEvent(this.element, 'touchstart', e => {
+                    e.preventDefault ()
+                    
+                    Object.assign(touch, {
+                        timeStamp: +new Date(),
+                        pageX: e.touches[0].pageX,
+                        pageY: e.touches[0].pageY,
+                    })
+                })
+                utils.addEvent(this.element, 'touchend', e => {
+                    e.preventDefault ()
+                    let diffStamp = new Date().getTime() - touch.timeStamp,
+                        diffPageX = e.changedTouches[0].pageX - touch.pageX,
+                        diffPageY = e.changedTouches[0].pageY - touch.pageY;
+
+                    if (diffStamp < 300 && Math.abs(diffPageX) < 10 && Math.abs(diffPageY) < 10) {
+                        utils.handle.apply(this)
+                    }
+                })
+
+            } else {
+                utils.addEvent(this.element, 'click',  utils.handle.bind(this))
+            }
         }
     }
-    if (!self.ScrollToTop) self.ScrollToTop = ScrollToTop
+    ScrollToTop.defaultOptions = {
+        showWhen: 300,
+        fadeSpeed: 5,
+        speed: 200
+    }
+    
+    if ( typeof exports != 'undefined' && !exports.nodeType) {
+        if ( typeof module != 'undefined' && !module.nodeType && module.exports) {
+            module.exports = ScrollToTop
+        }
+        exports.ScrollToTop = ScrollToTop
+    } else {
+        root.ScrollToTop = ScrollToTop
+    }
 }())

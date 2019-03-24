@@ -2,41 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>滚动</title>
+    <title>ScrollToTop</title>
     <style>
-        body {
-            height: 20000px;
-            background-color: #f5f5f5;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        #toTop {
+        body{
+            height: 20000px;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+        }
+        .triangle {
             position: fixed;
             right: 20px;
             bottom: 20px;
-            margin-bottom: 20px;
-            cursor: pointer;
             width: 0;
             height: 0;
-            border-top: 10px solid transparent;
-            border-bottom: 20px solid #3498db;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
+            border-left: 3vw solid transparent;
+            border-right: 3vw solid transparent;
+            border-bottom: 6.5vw solid #98bf21;
         }
-
-        #toTop.backing {
-            border-bottom: 20px solid #e74c3c;
+        .backing{
+            border-bottom: 6.5vw solid red;            
         }
-
     </style>
 </head>
 <body>
-    <span id="toTop"></span>
+    <span class="triangle"></span>
     <script src="./ScrollToTop.js"></script>
     <script>
-        var instance = new ScrollToTop('#toTop')
+        var instance = new ScrollToTop ('.triangle', {
+            showWhen: 10000,
+            speed: 400,
+            fadeSpeed: 20
+        })
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-03-26 22:19:14
- * @LastEditTime: 2019-03-26 23:07:46
+ * @LastEditTime: 2019-03-27 23:12:36
  */
 ;(function () {
     var root = ( typeof self === 'object' && self.self === self && self) ||
@@ -21,6 +21,30 @@
                 }
             }
             return target
+        },
+        addEvent:function (target, type, f) {
+            if (window.addEventListener) {
+                target.addEventListener(type, f, { passive: false })
+            } else {
+                target.attachEvent('on'+ type, f)
+            }
+        },
+        getScroll: function () {
+            if (window.pageXOffset != null) {
+                return {
+                    x: pageXOffset,
+                    y: pageYOffset
+                }
+            } else if (document.compatMode == 'CSS1Compat') {
+                return {
+                    x: document.documentElement.scrollLeft,
+                    y: document.documentElement.scrollTop
+                }
+            } 
+            return {
+                x: document.body.scrollLeft,
+                y: document.body.scrollTop
+            }
         }
     }
     function Sticky (el, options) {
@@ -39,10 +63,19 @@
             this.bindScrollEvent ()
         },
         calculateRect: function () {
-
+            var DOMRect = this.el.getBoundingClientRect()
+            this.top = DOMRect.top
+            this.left = DOMRect.left
         },
         bindScrollEvent: function () {
-            
+            var that = this
+            utils.addEvent(window, 'scroll', function () {
+
+                if (utils.getScroll().y > that.top) {
+                  
+                } else {
+                }
+            })
         }
     }
     Sticky.prototype = proto

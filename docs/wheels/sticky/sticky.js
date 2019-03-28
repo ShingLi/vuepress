@@ -3,7 +3,7 @@
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-03-26 22:19:14
- * @LastEditTime: 2019-03-27 23:12:36
+ * @LastEditTime: 2019-03-28 22:09:07
  */
 ;(function () {
     var root = ( typeof self === 'object' && self.self === self && self) ||
@@ -45,6 +45,23 @@
                 x: document.body.scrollLeft,
                 y: document.body.scrollTop
             }
+        },
+        setSticky: function () {
+            this.el.style.position = 'fixed'
+            this.el.style.top = 0
+            this.el.style.left = this.left + 'px'
+        },
+        setNormal: function () {
+            utils.removeProperty(this.el, 'position')
+            utils.removeProperty(this.el, 'top')
+            utils.removeProperty(this.el, 'left')
+        },
+        removeProperty: function (element, name) {
+            if (element.style.removeProperty) {
+                element.style.removeProperty(name)
+            } else {
+                element.style.removeAttribute(name)
+            }
         }
     }
     function Sticky (el, options) {
@@ -64,16 +81,16 @@
         },
         calculateRect: function () {
             var DOMRect = this.el.getBoundingClientRect()
-            this.top = DOMRect.top
-            this.left = DOMRect.left
+            this.top = DOMRect.top  + utils.getScroll().y
+            this.left = DOMRect.left + utils.getScroll().x
         },
         bindScrollEvent: function () {
             var that = this
             utils.addEvent(window, 'scroll', function () {
-
                 if (utils.getScroll().y > that.top) {
-                  
+                    utils.setSticky.apply(that)
                 } else {
+                    utils.setNormal.apply(that)
                 }
             })
         }

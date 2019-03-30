@@ -1,5 +1,5 @@
 <template>
-    <label class="lc-switch-wrapper">
+    <label class="lc-switch-wrapper" :class="[ disabled ? 'disabled' : '']">
         <input type="checkbox"
             class="lc-switch-input"
             v-model="currentValue"
@@ -40,6 +40,10 @@
             align-items: center;
             & * {
                 box-sizing: border-box;
+            }
+            &.disabled {
+                opacity: .7;
+                pointer-events: none;
             }
         }
         &-input{

@@ -3,7 +3,7 @@
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-03-26 22:19:14
- * @LastEditTime: 2019-03-28 22:09:07
+ * @LastEditTime: 2019-03-31 11:05:02
  */
 ;(function () {
     var root = ( typeof self === 'object' && self.self === self && self) ||
@@ -99,7 +99,7 @@
     
     if ( typeof exports != 'undefined' && !exports.nodeType) {
         if ( typeof module != 'undefined' && !module.nodeType && module.exports) {
-            module.exports = Sticky
+            exports = module.exports = Sticky
         }
         exports.Sticky = Sticky
     } else {

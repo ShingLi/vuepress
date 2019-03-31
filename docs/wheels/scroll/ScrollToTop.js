@@ -3,7 +3,7 @@
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-03-17 21:54:41
- * @LastEditTime: 2019-03-24 14:41:00
+ * @LastEditTime: 2019-03-31 11:04:42
  */
 
 ;(function () {
@@ -184,7 +184,7 @@
     
     if ( typeof exports != 'undefined' && !exports.nodeType) {
         if ( typeof module != 'undefined' && !module.nodeType && module.exports) {
-            module.exports = ScrollToTop
+            exports = module.exports = ScrollToTop
         }
         exports.ScrollToTop = ScrollToTop
     } else {

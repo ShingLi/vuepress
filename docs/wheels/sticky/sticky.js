@@ -3,7 +3,7 @@
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-03-26 22:19:14
- * @LastEditTime: 2019-03-31 11:05:02
+ * @LastEditTime: 2019-03-31 21:46:03
  */
 ;(function () {
     var root = ( typeof self === 'object' && self.self === self && self) ||
@@ -69,6 +69,7 @@
         this.options = utils.extend({}, this.constructor.defaultOptions, options)
         this.init ()
     }
+    
     Sticky.version = '1.0'
     Sticky.defaultOptions = {
         offset: 0

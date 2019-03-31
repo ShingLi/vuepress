@@ -3,9 +3,8 @@
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-03-17 21:54:41
- * @LastEditTime: 2019-03-31 11:04:42
+ * @LastEditTime: 2019-03-31 21:43:34
  */
-
 ;(function () {
     // const defaultOptions = Symbol()
     const root = ( typeof self === 'object' && self.self === self && self) ||

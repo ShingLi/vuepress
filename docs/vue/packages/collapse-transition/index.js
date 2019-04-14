@@ -3,7 +3,7 @@
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-04-02 23:19:05
- * @LastEditTime: 2019-04-14 14:54:56
+ * @LastEditTime: 2019-04-14 15:01:13
  */
 
 let transition = 'height .3s ease-in-out, paddingTop .3s ease-in-out, paddingBottom .3s ease-in-out'
@@ -40,7 +40,9 @@ const Transition = {
 
     beforeLeave (el) {
         el.style.transition = transition
+        
         if (!el.dataset) el.dataset = {}
+
         el.dataset.paddingTop = el.style.paddingTop
         el.dataset.paddingBottom = el.style.paddingBottom
 

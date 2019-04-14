@@ -1,37 +1,78 @@
 /*
- * @Description: 基于Vue的手风琴，背景：css动画需要知道高度，但是很多情况下是不知道元素高度的
+ * @Description: collapse
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-04-02 23:19:05
- * @LastEditTime: 2019-04-02 23:42:25
+ * @LastEditTime: 2019-04-14 14:54:56
  */
 
+let transition = 'height .3s ease-in-out, paddingTop .3s ease-in-out, paddingBottom .3s ease-in-out'
 const Transition = {
+    
     beforeEnter (el) {
+        el.style.transition = transition
+        
+        if (!el.dataset) el.dataset = {}
 
+        el.dataset.paddingTop = el.style.paddingTop
+        el.dataset.paddingBottom = el.style.paddingBottom
+        
+        el.style.height = 0
+        el.style.paddingTop = 0
+        el.style.paddingBottom = 0
     },
+
     enter (el) {
-
+        el.dataset.overflow = el.style.overflow
+        if (el.scrollHeight != 0) {
+            el.style.height = el.scrollHeight + 'px'
+            el.style.paddingTop = el.dataset.paddingTop
+            el.style.paddingBottom = el.dataset.paddingBottom
+        }
+        el.style.overflow = 'hidden'
     },
+
     afterEnter (el) {
-
+        el.style.transition = ''
+        el.style.height = ''
+        el.style.overflow = el.dataset.overflow
     },
+
     beforeLeave (el) {
+        el.style.transition = transition
+        if (!el.dataset) el.dataset = {}
+        el.dataset.paddingTop = el.style.paddingTop
+        el.dataset.paddingBottom = el.style.paddingBottom
 
+        el.style.height = el.scrollHeight + 'px'
     },
+
     leave (el) {
-
+        el.dataset.overflow = el.style.overflow
+        if (el.scrollHeight != 0) {
+            el.style.height = 0
+            el.style.paddingTop = 0
+            el.style.paddingBottom = 0
+        }
+        el.style.overflow = 'hidden'
     },
+    
     afterLeave (el) {
-
+        el.style.transition = ''
+        el.style.paddingTop = el.dataset.paddingTop
+        el.style.paddingBottom = el.dataset.paddingBottom
+        el.style.height = ''
     }
 }
 export default {
-    functional: true,
-    render (h, { children }) {
+    render (h) {
         const data = {
             on: Transition
         }
-        return h ('transition', data, children)
+        return h (
+            'transition',
+            data,
+            this.$slots.default
+        )
     }
 }

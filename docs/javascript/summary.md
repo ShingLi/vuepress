@@ -60,3 +60,13 @@
     ```
 
 + 发生场景: React 官网的demo
+
+### #Array
+
++ forEach
+    forEach 是没有办法中途退出的
++ 解决
+    ```js
+        $.each(object[, callback])
+        
+    ```

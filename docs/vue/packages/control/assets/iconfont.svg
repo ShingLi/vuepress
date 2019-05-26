@@ -1,0 +1,32 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="minus-circle" unicode="&#59264;" d="M696 416H328c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h368c4.4 0 8 3.6 8 8v48c0 4.4-3.6 8-8 8zM512 832C264.6 832 64 631.4 64 384s200.6-448 448-448 448 200.6 448 448S759.4 832 512 832z m0-820c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="plus-circle" unicode="&#59265;" d="M696 416H544V568c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-152H328c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h152v-152c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8V352h152c4.4 0 8 3.6 8 8v48c0 4.4-3.6 8-8 8zM512 832C264.6 832 64 631.4 64 384s200.6-448 448-448 448 200.6 448 448S759.4 832 512 832z m0-820c-205.4 0-372 166.6-372 372s166.6 372 372 372 372-166.6 372-372-166.6-372-372-372z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

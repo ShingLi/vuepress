@@ -2,7 +2,7 @@
  * @Description: tab-item
  * @Author: shingli
  * @Date: 2019-05-19 15:12:17
- * @LastEditTime: 2019-05-21 22:58:39
+ * @LastEditTime: 2019-05-26 15:42:09
  * @LastEditors: Please set LastEditors
  -->
 
@@ -40,12 +40,14 @@
                 <div class= { className }
                     onClick = { this.handleClick }
                 >
-                    <slot name='icon'>
-                        <i class= {this.icon} ></i>
-                    </slot>
-                    <slot>
-                        <div domPropsInnerHTML = {this.label}></div>
-                    </slot>
+                    {
+                        !this.$slots.icon ? (
+                            <i class= {this.icon} ></i>
+                        ) : this.$slots.icon
+                    }
+                    {
+                        !this.$slots.default ? <div domPropsInnerHTML = {this.label}></div> : this.$slots.default
+                    }
                 </div>
             )
         }

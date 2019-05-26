@@ -69,8 +69,8 @@
         render () {
             return (
                 <div class="tab-bar">
-                    <slot>
-                        {
+                    {
+                        !this.$slots.default ?
                             this.data.length &&
                             this.data.map((item, index) => {
                                 return (
@@ -80,8 +80,8 @@
                                     ></tab-item>
                                 )
                             })
+                            : this.$slots.default
                         }
-                    </slot>
                     <div class="slider" ref= 'slider'></div>
                 </div>
             )

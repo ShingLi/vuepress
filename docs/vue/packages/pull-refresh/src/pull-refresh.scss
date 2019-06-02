@@ -1,0 +1,25 @@
+.refresh-wrapper{
+	position: relative;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	pointer-events: none;
+	transition: height .3s ,min-height .3s;
+	.svg{
+        display: inline-block;
+        vertical-align: middle;
+		width: 30px;
+		height: 30px;
+		circle{
+			fill: none;
+			stroke-width: 2;
+			stroke: #d5d5d5;
+		}
+	}
+	.status-desc{
+        display:inline-block;
+        vertical-align: middle;
+		font-size: 14px;
+		margin-left: 10px;
+	}
+}

@@ -9,13 +9,38 @@
         display: inline-block;
         vertical-align: middle;
 		width: 30px;
-		height: 30px;
+        height: 30px;
+        animation: cz-rotate 2.5s infinite;
 		circle{
 			fill: none;
 			stroke-width: 2;
 			stroke: #d5d5d5;
+			animation: cz-loading 1.5s ease-in-out infinite;
 		}
-	}
+		@keyframes cz-loading {
+			0% {
+				stroke-dasharray: 1, 150;
+                stroke-dashoffset: 0
+			}
+			50% {
+                stroke-dasharray: 44, 150;
+                stroke-dashoffset: -27;
+			}
+			100% {
+                stroke-dasharray: 63, 150;
+                stroke-dashoffset: -60;
+
+			}
+		}
+    }
+    @keyframes cz-rotate {
+        from {
+            transform: rotate(0)
+        }
+        to {
+            transform: rotate(360deg)
+        }
+    }
 	.status-desc{
         display:inline-block;
         vertical-align: middle;

@@ -18,7 +18,7 @@ const pullRefresh = {
 	},
 	mounted () {
 		setTimeout(() => {
-			console.log(this.supportPassive)
+			
 			this.dom = document.querySelector('.refresh-wrapper')
 		},20)
 	},

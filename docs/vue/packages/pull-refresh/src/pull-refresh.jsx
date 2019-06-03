@@ -4,12 +4,22 @@ const pullRefresh = {
 	name: 'pull-refresh',
 	data () {
 		return {
-
+			supportPassive: false
 		}
-	}
+	},
+	created () {
+		try {
+			const options = Object.defineProperty({}, 'passive', {
+				get: () => this.supportPassive = true
+			})
+			window.addEventListener('test', null , options)
+		}catch (e) {console.log(e)}
+
+	},
 	mounted () {
 		setTimeout(() => {
-
+			console.log(this.supportPassive)
+			this.dom = document.querySelector('.refresh-wrapper')
 		},20)
 	},
 	methods: {

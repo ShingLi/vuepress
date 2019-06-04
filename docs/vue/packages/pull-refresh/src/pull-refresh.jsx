@@ -8,7 +8,8 @@ const pullRefresh = {
 			mv: 0,
 			threshould: 60,
 			maxOffset: 80,
-			status: 'pending'
+			status: 'pending',
+			tips: '下拉刷新'
 		}
 	},
 	created () {
@@ -38,25 +39,46 @@ const pullRefresh = {
 			}
 		},
 		touchStart (e) {
+			if (this.status != 'pending') return 
+
 			if (this.shouldRefresh()) {
 				this.pullStartY = e.touches[0].screenY
 			}
 		},
 		touchMove (e) {
 			let pullMoveY = e.touches[0].screenY, dist
+			if (this.status == 'pending'){
+				this.status = 'pulling'
+				this.dom.classList.add('pull')
+			}
+
+			this.dom.style.minHeight = this.mv + 'px'
+
 			if (this.pullStartY && pullMoveY) {
 				dist = pullMoveY - this.pullStartY
 			}
-			if (dist && dist > 0) {
-				e.cancelable && e.preventDefault()
-				this.dom.style.minHeight = this.mv + 'px'
+			if(dist > 0 ) {
+				e.preventDefault ()
+				this.mv = this.resistance (dist / this.threshould) * Math.min(this.maxOffset, dist)
+				if (this.status == 'pulling' && this.mv > this.threshould) {
+					this.status = 'releaseing'
+					this.tips = '释放刷新'
+				}
+				if (this.status == 'releaseing' && this.mv < this.threshould) {
+					this.status = 'pulling'
+					this.tips = '下拉刷新'
+				}
 			}
+			
 		},
 		touchEnd (e) {
-
+			
 		},
 		shouldRefresh () {
 			return !scrollY
+		},
+		resistance (t) {
+			return Math.min(1, t / 2.5)
 		}
 
 	},
@@ -68,7 +90,7 @@ const pullRefresh = {
 					<svg xmlns='http://www.w3.org/2000/svg' version='1.1' class ='svg' viewBox='0 0 24 24'>
 						<circle cy='12' cx= '12' r='10'></circle>
 					</svg>
-					<p class='status-desc'>下拉刷新</p>
+					<p class='status-desc'>{ this.tips }</p>
 				</div>
 				{ this.$slots.default }
 			</div>
@@ -77,3 +99,4 @@ const pullRefresh = {
 }
 
 export default pullRefresh
+	

@@ -10,3 +10,9 @@ Vue中使用jsx, vue-cli (2.0) vue init webpack jsx，默认是安装了jsx的�
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
     }
 ```
+
+.babelrc 中需要如下配置
+
+```js
+    "plugins": ['transform-vue-jsx']
+```

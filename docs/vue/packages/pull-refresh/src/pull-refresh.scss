@@ -1,54 +1,64 @@
-.refresh-wrapper{
-	position: relative;
-	text-align: center;
-	height: 0px;
-	line-height: 50px;
-	pointer-events: none;
-	transition: height .3s ,min-height .3s;
-	overflow: hidden;
-	.svg{
+.refresh-content{
+    text-align: center;
+    padding: 15px 10px;
+    .pattern{
+        width: 30px;
+        height:30px;
+        animation: rotateing 2s infinite;
+        .svg{
+            display: block;
+            width: 100%;
+            height: 100%;
+            circle{
+                fill: none;
+                stroke: #d5d5d5;
+
+
+                // stroke-dasharray:  130;
+                animation:  loading 1.5s infinite;
+            }
+            @keyframes loading {
+                0% {
+                    stroke-dasharray:  10, 130;
+                    stroke-dashoffset: 0
+                }
+                50% {
+                    stroke-dasharray:  77, 150;
+                    stroke-dashoffset:  -44;
+                }
+                100% {
+                    stroke-dasharray:  135, 135;
+
+                    stroke-dashoffset:  -120;
+                }
+            }
+        }
+        @keyframes rotateing {
+            0%{
+                transform: rotate(0)
+            }
+            100%{
+                transform:  rotate(360deg)
+            }
+        }
+    }
+    span{
+        font-family: "PingFang SC";
         display: inline-block;
         vertical-align: middle;
-		width: 30px;
-        height: 30px;
-        animation: cz-rotate 2.5s infinite;
-		circle{
-			fill: none;
-			stroke-width: 2;
-			stroke: #d5d5d5;
-			animation: cz-loading 1.5s ease-in-out infinite;
-		}
-		@keyframes cz-loading {
-			0% {
-				stroke-dasharray: 1, 150;
-                stroke-dashoffset: 0
-			}
-			50% {
-                stroke-dasharray: 44, 150;
-                stroke-dashoffset: -27;
-			}
-			100% {
-                stroke-dasharray: 63, 150;
-                stroke-dashoffset: -60;
-
-			}
-		}
-    }
-    @keyframes cz-rotate {
-        from {
-            transform: rotate(0)
-        }
-        to {
-            transform: rotate(360deg)
+        &.status-tips{
+            margin-left: 10px;
+            font-size: 15px;
+            color: #ccc;
         }
     }
-	.status-desc{
-        display:inline-block;
-        vertical-align: middle;
-		font-size: 14px;
-		margin-left: 10px;
-	}
 }
-.pull {
-	transition:none;
+.refresh-box{
+    height: 0;
+    overflow: hidden;
+    position:relative;
+    transition: all .3s linear;
+    &.pull {
+        transition: none;
+    }
 }

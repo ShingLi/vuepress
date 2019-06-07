@@ -1,102 +1,126 @@
+
 import './pull-refresh.scss'
 
+const RELEASEHEIGHT = 60, MAXHEIGHT=80, THRESHOLD = 70 ;
+
 const pullRefresh = {
-	name: 'pull-refresh',
-	data () {
-		return {
-			supportPassive: false,
-			mv: 0,
-			threshould: 60,
-			maxOffset: 80,
-			status: 'pending',
-			tips: '下拉刷新'
-		}
-	},
-	created () {
-		try {
-			const options = Object.defineProperty({}, 'passive', {
-				get: () => this.supportPassive = true
-			})
-			window.addEventListener('test', null , options)
-		}catch (e) {console.log(e)}
+    name: 'pull-refresh',
+    data () {
+        return {
+            status_tips: '',
+            supportPassive: false,
+            status: 'pending',
+            mv: 0
+        }
+    },
+    created () {
+        this.$nextTick(() => {
+            this.initPassive ()
+            this.initEvents ()
+            this.dom = document.getElementById('refresh-box')
+        })
+    },
+    methods: {
+        initEvents () {
+            this.bindEvents(window, 'touchstart', this.touchStart)
+            this.bindEvents(window, 'touchmove', this.touchMove)
+            this.bindEvents(window, 'touchend', this.touchEnd)
+        },
+        bindEvents (el, type, callback) {
+            // 不考虑任何兼容 纯ES6
+            el.addEventListener(type, callback, this.supportPassive ? { passive: false }: false)
+        },
+        removeEvents (el, type, callback) {
+            el.removeEventListener (type, callback)
+        },
+        initPassive () {
+            const options = Object.defineProperty({}, 'passive', {
+                get: () => this.supportPassive = true
+            })
+            if (window.addEventListener) {
+                window.addEventListener('test', null, options)
+            }
+            // IE attachEvent
+        },
+        shouldRefresh () {
+            return !!(pageYOffset || scrollY)
+        },
+        resistance (R) {
+            return Math.min(1, R / 2.5)
+        },
+        touchStart (e) {
+            if (this.status != 'pending' || this.shouldRefresh()) return
+            this.pullStartY = e.touches[0].screenY
+        },
+        touchMove (e) {
+            if (this.status == 'pending') {
+                this.status = 'pulling'
+                this.status_tips = '下拉刷新'
+            }
+            if (this.status == 'release') {
+                // e.preventDefault ()
+                // 防止在拉倒阀值后用户再次 下拉
+                return
+            }
+            let dist
 
-		this.init ()
-	},
-	mounted () {
-		setTimeout(() => {
-			this.dom = document.querySelector('.refresh-wrapper')
-		},20)
-	},
-	methods: {
-		init () {
-			this.bindEvent(window, 'touchstart', this.touchStart)
-			this.bindEvent(window, 'touchmove', this.touchMove)
-			this.bindEvent(window, 'touchend', this.touchEnd)
-		},
-		bindEvent (el, type, f) {
-			if (addEventListener) {
-				el.addEventListener(type, f, this.supportPassive ? { passive:false }: false)
-			}
-		},
-		touchStart (e) {
-			if (this.status != 'pending') return 
+            this.pullMoveY = e.touches[0].screenY
 
-			if (this.shouldRefresh()) {
-				this.pullStartY = e.touches[0].screenY
-			}
-		},
-		touchMove (e) {
-			let pullMoveY = e.touches[0].screenY, dist
-			if (this.status == 'pending'){
-				this.status = 'pulling'
-				this.dom.classList.add('pull')
-			}
+            // debugger
+            if (this.pullMoveY && this.pullStartY) {
+                dist = this.pullMoveY - this.pullStartY
+            }
+            if (dist > 0) {
+                e.preventDefault ()
+                this.dom.style.height = `${this.mv}px`
+                if (!this.dom.classList.contains('pull')) this.dom.classList.add('pull')
 
-			this.dom.style.minHeight = this.mv + 'px'
+                if (this.status == 'pulling' && dist > THRESHOLD) {
+                    this.status  = 'release'
+                    this.status_tips = '释放刷新'
+                }
+                if(this.status == 'release' && this.mv < THRESHOLD) {
+                    this.status = 'pulling'
+                    this.status_tips = '下拉刷新'
+                }
+                this.mv =  this.resistance( dist / THRESHOLD ) * Math.min(MAXHEIGHT, dist)
 
-			if (this.pullStartY && pullMoveY) {
-				dist = pullMoveY - this.pullStartY
-			}
-			if(dist > 0 ) {
-				e.preventDefault ()
-				this.mv = this.resistance (dist / this.threshould) * Math.min(this.maxOffset, dist)
-				if (this.status == 'pulling' && this.mv > this.threshould) {
-					this.status = 'releaseing'
-					this.tips = '释放刷新'
-				}
-				if (this.status == 'releaseing' && this.mv < this.threshould) {
-					this.status = 'pulling'
-					this.tips = '下拉刷新'
-				}
-			}
-			
-		},
-		touchEnd (e) {
-			
-		},
-		shouldRefresh () {
-			return !scrollY
-		},
-		resistance (t) {
-			return Math.min(1, t / 2.5)
-		}
+            }
+        },
+        touchEnd (e) {
+            this.dom.classList.remove('pull')
+            if (this.status == 'release' && this.mv > THRESHOLD) {
+                this.dom.style.height = `${RELEASEHEIGHT}px`
+                this.status_tips = '正在刷新'
 
-	},
-	render () {
+            } else {
+                if (this.status == 'release') return // 防止刷新状态点击返回初始位置
+                this.dom.style.height = 0
+                this.status = 'pending'
+            }
 
-		return (
-			<div>
-				<div class='refresh-wrapper'>
-					<svg xmlns='http://www.w3.org/2000/svg' version='1.1' class ='svg' viewBox='0 0 24 24'>
-						<circle cy='12' cx= '12' r='10'></circle>
-					</svg>
-					<p class='status-desc'>{ this.tips }</p>
-				</div>
-				{ this.$slots.default }
-			</div>
-		)
-	}
+            this.pullStartY = this.pullMoveY = this.mv = 0
+
+        }
+    },
+    render () {
+        return (
+            <div>
+                <div id='refresh-box'  class='refresh-box'>
+                    <div class='refresh-content'>
+                        <span class='pattern'>
+                            <svg class='svg' xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 44 44'>
+                                <circle cx='22' cy='22' r='20'></circle>
+                            </svg>
+                        </span>
+                        <span class='status-tips'> { this.status_tips } </span>
+                    </div>
+                </div>
+                { this.$slots.default }
+            </div>
+        )
+    }
+
 }
 
 export default pullRefresh
-	

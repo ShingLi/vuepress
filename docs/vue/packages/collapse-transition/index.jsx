@@ -3,7 +3,7 @@
  * @Author: shingli
  * @LastEditors: Please set LastEditors
  * @Date: 2019-04-02 23:19:05
- * @LastEditTime: 2019-04-14 15:01:13
+ * @LastEditTime: 2019-06-08 21:53:47
  */
 
 let transition = 'height .3s ease-in-out, paddingTop .3s ease-in-out, paddingBottom .3s ease-in-out'
@@ -67,14 +67,20 @@ const Transition = {
     }
 }
 export default {
-    render (h) {
-        const data = {
-            on: Transition
-        }
-        return h (
-            'transition',
-            data,
-            this.$slots.default
+    // render (h) {
+    //     const data = {
+    //         on: Transition
+    //     }
+    //     return h (
+    //         'transition',
+    //         data,
+    //         this.$slots.default
+    //     )
+    // }
+    //  没有配置babelrc 选择上面并且将组件后缀名改成JS
+    render () {
+        return (
+            <transition { ... { on: Transition } } > { this.$slots.default } </transition>
         )
     }
 }

@@ -1,16 +1,29 @@
 
 import './pull-refresh.scss'
 
-const RELEASEHEIGHT = 60, MAXHEIGHT=80, THRESHOLD = 70 ;
+const RELEASEHEIGHT = 60, MAXHEIGHT=80, THRESHOLD = 70
 
 const pullRefresh = {
     name: 'pull-refresh',
+    props: {
+        value: {
+            type: [Boolean, Number],
+            required: true
+        }
+    },
     data () {
         return {
             status_tips: '',
             supportPassive: false,
             status: 'pending',
             mv: 0
+        }
+    },
+    watch: {
+        value: function (newVal) {
+            this.dom.style.height = 0
+            this.status = 'pending'
+            this.$emit('input', false)
         }
     },
     created () {
@@ -43,25 +56,35 @@ const pullRefresh = {
             // IE attachEvent
         },
         shouldRefresh () {
-            return !!(pageYOffset || scrollY)
+            return !(pageYOffset || scrollY)
         },
         resistance (R) {
             return Math.min(1, R / 2.5)
         },
         touchStart (e) {
-            if (this.status != 'pending' || this.shouldRefresh()) return
-            this.pullStartY = e.touches[0].screenY
+            // if (this.status != 'pending' || this.shouldRefresh()) {
+            //     return
+            // }
+            if (this.shouldRefresh ()) {
+                if (this.status != 'pending') {
+                    // 正在刷新状态 =再次触发默滚动页面
+                    e.preventDefault ()
+                } else {
+                    this.pullStartY = e.touches[0].screenY
+                }
+            }
         },
         touchMove (e) {
-            if (this.status == 'pending') {
+            if (this.pullStartY && this.status == 'pending') {
                 this.status = 'pulling'
                 this.status_tips = '下拉刷新'
             }
-            if (this.status == 'release') {
-                // e.preventDefault ()
-                // 防止在拉倒阀值后用户再次 下拉
-                return
-            }
+            // if (this.status == 'release') {
+            //     e.preventDefault ()
+            //     // 本意是防止在刷新状态，用户再次滑动触发默认行为滚动页面，但是会造成这样，在用户手动向上滑动
+            //    失效
+            //     return
+            // }
             let dist
 
             this.pullMoveY = e.touches[0].screenY
@@ -87,11 +110,12 @@ const pullRefresh = {
 
             }
         },
-        touchEnd (e) {
+        touchEnd () {
             this.dom.classList.remove('pull')
             if (this.status == 'release' && this.mv > THRESHOLD) {
                 this.dom.style.height = `${RELEASEHEIGHT}px`
                 this.status_tips = '正在刷新'
+                this.$emit('refresh')
 
             } else {
                 if (this.status == 'release') return // 防止刷新状态点击返回初始位置

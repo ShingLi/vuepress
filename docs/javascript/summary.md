@@ -70,3 +70,7 @@
         $.each(object[, callback])
         
     ```
+
+### offsetLeft
+    元素的左边框宽度，以像素表示，如果有左边的垂直滚动条，则该属性包括滚动条的宽度
+    offsetLeft = border + 滚动条的宽度（如果有）

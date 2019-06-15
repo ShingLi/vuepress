@@ -2,7 +2,7 @@
  * @Description: 图片懒加载
  * @Author: shingli
  * @Date: 2019-06-15 16:03:52
- * @LastEditTime: 2019-06-15 19:44:22
+ * @LastEditTime: 2019-06-15 20:32:20
  * @LastEditors: Please set LastEditors
  */
 
@@ -14,11 +14,10 @@
             for (var i = 1, len = arguments.length; i < len; i++) {
                 var current= arguments[i]
                 for (var k in current) {
-                    if (current[k]) {
-                        target[k] = current[k]
-                    } else continue
+                    if (current.hasOwnProperty(k) && current[k] != 'undefined' && current[k] != null)
                 }
             }
+            return target
         }
     }
 
@@ -42,13 +41,14 @@
     }
 
     proto.calculateView = function () {
+        console.log(this.opts)
         this.view = {
-            // top: 0 - (parseInt(this.opts.top, 10) || 0)
+            top: 0 - (parseInt(this.opts.top, 10) || 0)
             
         }
     }
     
     root.Lazy = Lazy
     
-
+    
 })();

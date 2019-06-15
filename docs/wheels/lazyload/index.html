@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>懒加载</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>LazyLoad 演示</h1>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <img src="img/loading.gif" alt="" data-lazy-src="img/1.jpg">
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <img src="img/loading.gif" alt="" data-lazy-src="img/2.jpg">
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <img src="img/loading.gif" alt="" data-lazy-src="img/3.jpg">
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <img src="img/loading.gif" alt="" data-lazy-src="img/4.jpg">
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate, rem molestiae? Hic sapiente iusto ea, inventore at adipisci, incidunt consequatur laborum aliquam quia magnam dolore labore consectetur quisquam officia!</p>
+
+        <img src="img/loading.gif" alt="" data-lazy-src="img/5.jpg">
+
+    </div>
+    
+    <script src="js/lazyload.js"></script>
+    <script>
+	var lazy = new Lazy({
+		onload: function(elem){
+            console.log(elem)
+		},
+        delay: 2000
+	})
+    </script>
+</body>
+
+</html>

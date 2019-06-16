@@ -2,7 +2,7 @@
  * @Description: 图片懒加载
  * @Author: shingli
  * @Date: 2019-06-15 16:03:52
- * @LastEditTime: 2019-06-15 20:32:20
+ * @LastEditTime: 2019-06-16 10:17:36
  * @LastEditors: Please set LastEditors
  */
 
@@ -49,6 +49,5 @@
     }
     
     root.Lazy = Lazy
-    
     
 })();

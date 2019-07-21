@@ -22,8 +22,8 @@
     .home-wrapper{
         font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
         color: #333;
-        position: relative;
-        top:3.6rem;
+        position: absolute;
+        // top:3.6rem;
         width: 100%;
         bottom: 0;
         overflow: hidden;

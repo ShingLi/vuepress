@@ -10,10 +10,10 @@ sublime。后来从琨神哪里了解到真正意义上的 前端IDE 神器--VS 
 工欲善其事，必先利其器.
 </br>
 插件：background  这个插件是可以给我们的编辑器加上背景图的，听上去是不是高大上(逼格高！)
-![demo](../.vuepress/public/img/vue/1.png)
+![demo](../../.vuepress/public/img/vue/1.png)
 </br>
 上面的是效果图，安装见下图
-![demo](../.vuepress/public/img/vue/2.png)
+![demo](../../.vuepress/public/img/vue/2.png)
 
 ## 代码设置部分
 

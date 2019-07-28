@@ -8,6 +8,7 @@ module.exports = {
         }
     },
     port: 8081,
+    host:'192.168.0.103',
     dest: './dist',
     head: [
         ['link', { rel: 'icon', href: '/img/logo.ico' }],
@@ -95,10 +96,12 @@ function vueConfig () {
             collapsable: false,
             children: [
                 '',
-                'Ide',
-                'vant-SwipeCell',
-                'vue-config',
-                'transition'
+                'jsx/config.md',
+                'jsx/props.md'
+                // '/使用杂项/Ide',
+                // '/使用杂项/vant-SwipeCell',
+                // '/使用杂项/vue-config',
+                // '/使用杂项/transition'
             ]
         }
     ]
@@ -110,9 +113,7 @@ function reactConfig () {
             collapsable: false,
             children: [
                 '',
-                'jsx',
-                'Components',
-                'statelifecycle'
+                'summary/受控组件和非受控组件.md'
             ]
         }
     ]

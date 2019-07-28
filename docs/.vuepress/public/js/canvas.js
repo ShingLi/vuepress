@@ -6,7 +6,9 @@ const canvas = () =>{
     // console.log(height)
     var c = document.getElementsByTagName('canvas')[0],
         x = c.getContext('2d'),
-        pr = window.devicePixelRatio || 1,
+        // pr = window.devicePixelRatio || 1,
+        pr = 1,
+
         w = window.innerWidth,
         h = window.innerHeight - height,
         f = 90,

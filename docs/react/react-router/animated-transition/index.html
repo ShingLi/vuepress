@@ -1,0 +1,65 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: shingli
+ * @Date: 2019-08-10 12:59:02
+ * @LastEditTime: 2019-08-10 17:51:16
+ * @LastEditors: Please set LastEditors
+ -->
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react-router 路由动画</title>
+    <script src="https://cdn.bootcss.com/react/16.8.6/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"></script>
+    <script src="https://cdn.bootcss.com/react-router-dom/5.0.1/react-router-dom.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <script type="text/babel" async>
+        'use strict'
+        
+        // 路由
+        const { withRouter, HashRouter: Router, Switch, Route } = ReactRouterDOM
+
+        // 首页组件     
+        const Home = () => (
+            <div className="view">
+                首页
+            </div>
+        )
+        
+        // 其他业务页面
+        const Other = () => (
+            <div className="view">
+                我是业务组件
+            </div>
+        )
+        class App extends React.Component {
+            
+            render () {
+               
+                return (
+                    <div className="wrapper">
+                        <Switch>
+                            <Route exact path= '/' component = { Home }></Route>
+                            <Route path= '/other' component = { Other }></Route>
+                        </Switch>
+                    </div>
+                )
+            }
+        }
+        withRouter(App)
+        
+        // debugger 
+        // const e = React.createElement
+
+        ReactDOM.render(<Router><App/></Router>, document.querySelector('#app'))
+    </script>
+    
+    <div id="app"></div>
+</body>
+</html>

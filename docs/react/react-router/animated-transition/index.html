@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: shingli
  * @Date: 2019-08-10 12:59:02
- * @LastEditTime: 2019-08-10 17:51:16
+ * @LastEditTime: 2019-08-11 16:52:57
  * @LastEditors: Please set LastEditors
  -->
 <!DOCTYPE html>
@@ -16,6 +16,7 @@
     <script src="https://cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.development.js"></script>
     <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"></script>
     <script src="https://cdn.bootcss.com/react-router-dom/5.0.1/react-router-dom.js"></script>
+    <script src="https://cdn.bootcss.com/react-transition-group/4.2.2/react-transition-group.js"></script>
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
@@ -24,40 +25,58 @@
         
         // 路由
         const { withRouter, HashRouter: Router, Switch, Route } = ReactRouterDOM
+        const { CSSTransition, TransitionGroup } = ReactTransitionGroup
 
         // 首页组件     
         const Home = () => (
-            <div className="view">
+            <div className="view home">
                 首页
             </div>
         )
         
         // 其他业务页面
         const Other = () => (
-            <div className="view">
+            <div className="view other">
                 我是业务组件
             </div>
         )
+        
         class App extends React.Component {
             
+            componentWillReceiveProps () {
+                console.log(this.routerRef)
+            }
+
             render () {
-               
+                
                 return (
                     <div className="wrapper">
-                        <Switch>
-                            <Route exact path= '/' component = { Home }></Route>
-                            <Route path= '/other' component = { Other }></Route>
-                        </Switch>
+                    <TransitionGroup
+                        component = { React.Fragment }
+                    >
+                        <CSSTransition
+                            appear
+                            classNames = 'fade'
+                            timeout = { 4800 }
+                            key = { this.props.location.pathname }
+                            
+                        >
+                            <Switch location = { this.props.location } >
+                                <Route exact path= '/' component = { Home } ref = { el => this.routerRef = el }></Route>
+                                <Route exact path= '/other' component = { Other } ref = { el => this.routerRef = el }></Route>
+                            </Switch>
+                        </CSSTransition>
+                    </TransitionGroup>
                     </div>
                 )
             }
         }
-        withRouter(App)
+        // 高阶组件 HOC
+        const Index = withRouter(App)
         
-        // debugger 
+        
         // const e = React.createElement
-
-        ReactDOM.render(<Router><App/></Router>, document.querySelector('#app'))
+        ReactDOM.render(<Router><Index/></Router>, document.querySelector('#app'))
     </script>
     
     <div id="app"></div>

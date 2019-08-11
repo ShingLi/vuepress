@@ -19,3 +19,37 @@
     height: 100%;
     overflow: hidden;
 }
+
+.home {
+    background-color: #98bf21;
+}
+
+.other {
+    background-color: pink;
+}
+/* 路由过渡动画 */
+.fade-enter{
+    animation: enter 5000ms ease-in-out
+}
+
+.fade-exit {
+    animation: leave  5000ms ease-in-out
+}
+
+@keyframes leave {
+    from {
+        transform: translate3d(0,0,0)
+    }
+    to {
+        transform: translate3d(-100%,0,0)
+    }
+}
+
+@keyframes enter {
+    from {
+        transform: translate3d(100%,0,0)
+    }
+    to {
+        transform: translate3d(0,0,0)
+    }
+}

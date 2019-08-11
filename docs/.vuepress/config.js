@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-03-09 18:59:06
+ * @LastEditTime: 2019-08-11 17:03:57
+ * @LastEditors: Please set LastEditors
+ */
 module.exports = {
     title: '邂逅烟雨浮萍',
     description: 'shingli的博客',
@@ -8,7 +15,7 @@ module.exports = {
         }
     },
     port: 8081,
-    host:'192.168.0.103',
+    // host:'192.168.0.103',
     dest: './dist',
     head: [
         ['link', { rel: 'icon', href: '/img/logo.ico' }],

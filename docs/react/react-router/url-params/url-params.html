@@ -1,0 +1,83 @@
+<!--
+ * @Description: react-router 路由动态传参
+ * @Author: shingli
+ * @Date: 2019-08-18 16:22:25
+ * @LastEditTime: 2019-08-18 21:57:20
+ * @LastEditors: Please set LastEditors
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name= "viewport" content="width= device-width">
+	<title>url 动态传参</title>
+	<script src="https://cdn.bootcss.com/react/16.8.6/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"></script>
+    <script src="https://cdn.bootcss.com/react-router-dom/5.0.1/react-router-dom.js"></script>
+    <script src="https://cdn.bootcss.com/react-transition-group/4.2.2/react-transition-group.js"></script>
+    <style>
+    	* {
+    		margin: 0;
+    		padding: 0;
+    		box-shadow: border-box;
+    	}
+    	.pages {
+    		height: calc(100vh - 44px);
+    		width: 100vw;
+    	}
+		ul {
+			display: flex;
+			border-bottom: 1px solid #ccc;
+		}
+		ul li {
+			flex:1;
+			list-style: none;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+		}
+		ul li a {
+			text-decoration: none;
+		}
+		ul li a.active{
+			color: chocolate;
+		}
+    </style>
+</head>
+<body>
+	<script async type="text/babel">
+		const { HashRouter: Router, Route, NavLink: Link } = ReactRouterDOM
+		
+		const Home = ({match}) => (
+			<div>
+				<h1>我是首页</h1>
+				<h2>路由的动态参数 { match.params.id } </h2>
+			</div>
+		)
+
+		const Other = ({match}) => (
+			<div>
+				<h1>我是业务页面</h1>
+				<h2>路由的动态参数 { match.params.id } </h2>
+			</div>
+		)
+
+		const ParamsExample = () => (
+			<Router>
+				<ul>
+					<li><Link to='/123'>首页</Link></li>
+					<li><Link to='/A/456'>业务页面</Link></li>
+				</ul>
+				<div className="pages">
+					<Route path = '/:id' exact component = { Home }></Route>
+					<Route path = '/A/:id' component = { Other } ></Route>
+				</div>
+			</Router>
+		)
+		
+		ReactDOM.render(<ParamsExample/>, document.getElementById('app'))
+	</script>
+	<div id="app"></div>
+</body>
+</html>	

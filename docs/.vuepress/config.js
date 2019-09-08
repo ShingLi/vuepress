@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-03-09 18:59:06
- * @LastEditTime: 2019-08-11 17:03:57
+ * @LastEditTime: 2019-09-08 09:17:30
  * @LastEditors: Please set LastEditors
  */
 module.exports = {
@@ -33,10 +33,10 @@ module.exports = {
                 items: [
                     { text: 'CSS', link: '/css/' },
                     { text: 'Vue', link: '/vue/' },
-                    { text: 'Php', link: '/php/' },
                     { text: 'React', link: '/react/' },
+                    { text: 'Php', link: '/php/' },
+                    { text: 'Koa', link: '/koa/'},
                     { text: 'other', link: '/other/' },
-                    // { text: 'Koa', link: '/koa/'},
                     { text: 'JavaScript', link: '/javascript/'}
                     // { text: 'ChinesePoetry', link: '/chinesePoetry/'}
                 ]

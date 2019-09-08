@@ -1,3 +1,10 @@
+<!--
+ * @Description: Jsx
+ * @Author: shingli
+ * @Date: 2019-06-06 23:28:04
+ * @LastEditTime: 2019-09-08 09:23:35
+ * @LastEditors: Please set LastEditors
+ -->
 # Jsx-props
 
 >Vue 和 React对比
@@ -19,10 +26,11 @@
             }
         },
         render () {
+            const { value, html } = this
             return (
-                <div>
-                    <div>{ this.vue }</div>
-                    <div domPropsInnerHTML = { this.html } ></div>
+                <div class= 'wrapper'>
+                    <div>{ value }</div>
+                    <div domPropsInnerHTML = { html } ></div>
                 </div>
             )
         }
@@ -44,8 +52,12 @@
             class Demo  extends Comeponet {
                 render () {
                     <Fragments>
-                        <div>hello { this.props.name }</div>
+                        <div className='wrapper'>hello { this.props.name }</div>
                     </Fragments>
                 }
             }
         ```
+
+## 区别
+
+类名，vue中是`class` react中是`className`

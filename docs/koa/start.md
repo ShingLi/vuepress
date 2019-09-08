@@ -1,3 +1,11 @@
+<!--
+ * @Description: Koa 学习
+ * @Author: shingli
+ * @Date: 2019-03-09 18:59:06
+ * @LastEditTime: 2019-09-08 10:00:32
+ * @LastEditors: Please set LastEditors
+ -->
+
 # 安装
 
 koa -- 基于Node.js 平台的的下一代web 开发框架(前端想成为全栈, vue + koa + mogodb )
@@ -54,5 +62,7 @@ koa 是基于node的，所以先需要安装 node.js ,然后是安装koa
         ctx.response.type = 'html'
         ctx.response.body = '<h1>hello world</h1>'
     })
+    // 其实根据我自己测试发现type 的类型是自动变的，如果是文本 就是text/plain
+    // html 的话自动变成 `text/html`
     app.listen(3000)
 ```

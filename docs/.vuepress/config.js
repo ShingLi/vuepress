@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-03-09 18:59:06
- * @LastEditTime: 2019-09-08 09:17:30
+ * @LastEditTime: 2019-10-04 12:06:09
  * @LastEditors: Please set LastEditors
  */
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
         }
     },
     port: 8081,
-    // host:'192.168.0.103',
+    host:'192.168.0.103',
     dest: './dist',
     head: [
         ['link', { rel: 'icon', href: '/img/logo.ico' }],
@@ -167,14 +167,14 @@ function phpConfig() {
 function otherConfig() {
     return [
         {
-            title:'高程',
+            title:'其他',
             collapsable: false,
             children: [
                 '',
-                'bind',
-                'closure',
-                'new',
-                'oop'
+                'fullCalendar/fullcalendar.md',
+                'pictureInpicture/pictureInpicture.md',
+                'sublime/jsx-emmet.md'
+                
             ]
         }
     ]

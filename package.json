@@ -15,12 +15,14 @@
   "author": "Stephen_shing",
   "license": "ISC",
   "devDependencies": {
+    "babel-plugin-import": "^1.12.2",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "vuepress": "^0.14.10"
   },
   "dependencies": {
     "element-ui": "^2.4.6",
+    "vant": "^2.2.5",
     "vue-lottie": "^0.2.1",
     "webpack-dev-middleware": "^3.6.0"
   }

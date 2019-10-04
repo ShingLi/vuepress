@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-03-09 18:59:06
- * @LastEditTime: 2019-08-11 17:19:39
+ * @LastEditTime: 2019-10-04 12:16:35
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -49,8 +49,8 @@
                                     <code>CSS&&CSS3</code>
                                     <el-progress :percentage="70" color="#8e71c7"></el-progress>
                                     <code>Jquery</code>
-                                    <el-progress :percentage="75" color="#909399"></el-progress>
-                                    <code>JavaScript(es5&&es6)</code>
+                                    <el-progress :percentage="60" color="#909399"></el-progress>
+                                    <code>JavaScript(es6 && es7)</code>
                                     <el-progress :percentage="61" color="#F56C6C"></el-progress>
                                     <code>Mini program(微信小程序)</code>
                                     <el-progress :percentage="60" color="#2db7f5"></el-progress>

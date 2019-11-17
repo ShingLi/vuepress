@@ -1,7 +1,7 @@
 <!--
  * @Author: shingli
  * @Date: 2019-11-07 22:45:09
- * @LastEditTime: 2019-11-10 16:32:36
+ * @LastEditTime: 2019-11-17 14:28:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vuepress\docs\mogodb\install\install.md
@@ -23,9 +23,9 @@
     mongod
 ```
 
-![命令行图片] ('./assets/1.png')
+![命令行图片](./assets/1.png)
 
 服务成功的标志是在浏览器输入 `127.0.0.1:27017`
-！[成功的标志] ('./assets/success.png')
+![成功的标志](./assets/success.png)
 
 服务启动成功后等待连接

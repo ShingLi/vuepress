@@ -39,4 +39,4 @@
 
 ## 成功
 
-![成功] ('./assets/get.png')
+![success](./assets/get.png)

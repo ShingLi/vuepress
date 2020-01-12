@@ -15,7 +15,7 @@ module.exports = {
         }
     },
     port: 8081,
-    host:'192.168.0.103',
+    host:'localhost',
     dest: './dist',
     head: [
         ['link', { rel: 'icon', href: '/img/logo.ico' }],

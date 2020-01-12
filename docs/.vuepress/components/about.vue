@@ -7,12 +7,37 @@
  -->
 <template>
 	<transition name ='slide'>
-        <div class="about_wrapper">
+        <div class="about_wrapper" :class="{pd : isiPad}">
 		<!-- 个人栏 -->
             <el-row>
                 <el-col :span='24'>
+					<template v-if='isiPad'>
+						<el-aside style="width: 100%;">
+						    <div class="userinfo ipad">
+						        <div class="avatar">
+						            <img :src="avatar"
+						                @mouseover='startRotate'
+						                @mouseout= 'endRotate'
+						            >
+						        </div>
+						        <div class="base_wrapper">
+						            <div class="base_info">
+						                <p class="left"></p>
+						                <p class="base">个人信息</p>
+						            </div>
+						            <div class="item"
+						                v-for='item in bossInfo'
+						            >
+						                <i class="iconfont" v-html='item.icon'></i>
+						                <span>{{item.text}}</span>
+						            </div>
+						            
+						        </div>
+						    </div>
+						</el-aside>
+					</template>
                     <el-container class="main_box">
-                        <el-aside width='20%'>
+                        <el-aside :width='calculateWidth'>
                             <div class="userinfo">
                                 <div class="avatar">
                                     <img :src="$withBase(`${avatar}?imageView2/1/w/80/h/80`)"
@@ -35,7 +60,7 @@
                                 </div>
                             </div>
                         </el-aside>
-                        <el-main>
+                        <el-main :style="calculateWidth_main">
                             <div class="main">
                                 <div class="detail">
                                     <h3>《 卜算子 自嘲 》</h3>
@@ -43,7 +68,7 @@
                                     <p>大志戏功名， 海斗量福祸。 论到囊中羞涩时， 怒指乾坤错！</p>
                                 </div>
                                 <!-- skil -->
-                            <div class="progress">
+                            <div class="progress" :class="[ isiPad ? 'ipad' : 'normal' ]">
                                     <code>Html&&Html5</code>
                                     <el-progress :percentage="70"></el-progress>
                                     <code>CSS&&CSS3</code>
@@ -56,42 +81,76 @@
                                     <el-progress :percentage="60" color="#2db7f5"></el-progress>
                                     <code>Vue</code>
                                     <el-progress :percentage="70" color="#19be6b"></el-progress>
-                                     <code>React</code>
+                                    <code>React</code>
                                     <el-progress :percentage="30" color="#19be6b"></el-progress>
+									<code>Koa</code>
+									<el-progress :percentage="10" color="#F56C6C"></el-progress>
                             </div>
                             </div>
                         </el-main>
                     </el-container>
-                    <el-container>
-                        <el-footer height='52'>
+                    <el-container v-if="!isiPad">
+                        <!-- <el-footer height='52'>
                             <v-footer></v-footer>
-                        </el-footer>
+                        </el-footer> -->
                     </el-container>
                 </el-col>
             </el-row>
+			<img :src="logo" class="logo_">
 	    </div>
     </transition>
 </template>
 <script>
     import  VFooter from './views/footer.vue'
+	import logo from '../public/img/logo.svg'
     export default {
         name: "about",
+		components: {
+		    VFooter
+		},
         data () {
             return {
                 name: "李成",
-                avatar:
-                    "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+                // avatar: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+				avatar: "/img/avatar_1.jpg",
                 bossInfo: [
                     { icon: "&#xe66e;", text: "男" },
                     { icon: "&#xe626;", text: "汉" },
                     { icon: "&#xe608;", text: "licheng" },
                     { icon: "&#xe60d;", text: "安徽芜湖" },
                     { icon: "&#xe670;", text: "745573545@qq.com" }
-                ]
-            };
+                ],
+				isiPad: !!navigator.userAgent.toLowerCase().match(/ipad/i),
+				logo,
+            }
         },
+		computed: {
+			calculateWidth () {
+				let ret = '20%'
+				let ua = navigator.userAgent.toLowerCase()
+				if (ua.match(/ipad/i) == 'ipad') {
+					
+					ret = '0%'
+				}
+				return ret
+			},
+			calculateWidth_main () {
+				if (this.isiPad) {
+					return {
+						marginLeft: 0,
+						marginTop: '40px'
+					}
+				}
+				return {
+					marginLeft: '5vw'
+				}
+			}
+		},
         created () {
-            this.iconClss = [];
+            this.iconClss = []
+			window.addEventListener('resize', () => {
+				location.reload()
+			})
         },
         methods: {  
             startRotate (e) {
@@ -110,10 +169,7 @@
                 }
             }
         },
-        components: {
-            VFooter
-        }
-    };
+    }
 </script>
 <style lang="less">
     .slide-enter-active,.slide-leave-active{
@@ -150,7 +206,7 @@
 		width: 100%;
         padding: 5%;
         padding-bottom: 0;
-        height: calc(100vh - 3.6rem);
+        min-height: calc(100vh - 3.6rem);
         
         background-color:@color-theme;
 		.userinfo{
@@ -158,7 +214,9 @@
             text-align: center;
 			border-radius: 10px;
 			background-color: #fff;
-			box-shadow: 3px 3px #f5f5f5;
+			&.ipad{
+				width: 100%;
+			}
             .avatar{
             	padding: 4rem;
 				padding-bottom: 1rem;;
@@ -168,7 +226,16 @@
                     height: 7rem;
                     border-radius: 50%;
                     cursor: pointer;
+					animation:  Rotate 3s infinite linear;
                 }
+				// @keyframes Rotate {
+				// 	0%{
+				// 		transform: rotate(0)
+				// 	}
+				// 	100% {
+				// 		transform: rotate(360deg)
+				// 	}
+				// }
             }
 			.base{
 				&_wrapper{
@@ -229,9 +296,14 @@
                 }
             }
             .progress{
-                margin-top: 2.2rem;
+                margin-top: .2rem;
                 padding-left: 2rem;
-                width: 40%;
+                &.noraml{
+					width: 40%;
+				}
+				&.ipad{
+					width: 70%;
+				}
             }
         }
     }
@@ -284,6 +356,9 @@
                         font-size: 16px;
                     }
                 }
+				.el-aside{
+				    width: 100%;
+				}
                 // .el-main{
                 //     margin-left: 5vw;
                 //     // margin: 0 5%;
@@ -313,4 +388,27 @@
     .el-row{
         height: 100%;  
     }
+	.pd{
+		padding-bottom: 20px;
+	}
+	.el-aside{
+		background-color: #fff;
+		border-radius: 10px;
+		box-shadow: 3px 3px #f5f5f5;
+	}
+	.logo_{
+		position: absolute;
+		right: 0vmin;
+		top: 10vmin;
+		width: 40vmin;
+		animation:  logo 15s infinite linear;
+	}
+	@keyframes logo {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
+	}
 </style>

@@ -109,30 +109,37 @@
 		    VFooter
 		},
         data () {
-            return {
-                name: "李成",
-                // avatar: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
-				avatar: "/img/avatar_1.jpg",
-                bossInfo: [
-                    { icon: "&#xe66e;", text: "男" },
-                    { icon: "&#xe626;", text: "汉" },
-                    { icon: "&#xe608;", text: "licheng" },
-                    { icon: "&#xe60d;", text: "安徽芜湖" },
-                    { icon: "&#xe670;", text: "745573545@qq.com" }
-                ],
-				isiPad: !!navigator.userAgent.toLowerCase().match(/ipad/i),
-				logo,
-            }
+            try {
+				return {
+				    name: "李成",
+				    // avatar: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+					avatar: "/img/avatar_1.jpg",
+				    bossInfo: [
+				        { icon: "&#xe66e;", text: "男" },
+				        { icon: "&#xe626;", text: "汉" },
+				        { icon: "&#xe608;", text: "licheng" },
+				        { icon: "&#xe60d;", text: "安徽芜湖" },
+				        { icon: "&#xe670;", text: "745573545@qq.com" }
+				    ],
+					isiPad: !!navigator.userAgent.toLowerCase().match(/ipad/i),
+					logo,
+				}
+			} catch(e) { console.log(e) }
         },
 		computed: {
 			calculateWidth () {
-				let ret = '20%'
-				let ua = navigator.userAgent.toLowerCase()
-				if (ua.match(/ipad/i) == 'ipad') {
-					
-					ret = '0%'
+				try{
+					let ret = '20%'
+					let ua = navigator.userAgent.toLowerCase()
+					if (ua.match(/ipad/i) == 'ipad') {
+						
+						ret = '0%'
+					}
+					return ret
+				}catch(e){
+					console.log(e)
+					//TODO handle the exception
 				}
-				return ret
 			},
 			calculateWidth_main () {
 				if (this.isiPad) {
@@ -148,9 +155,13 @@
 		},
         created () {
             this.iconClss = []
-			window.addEventListener('resize', () => {
-				location.reload()
-			})
+			// try{
+			// 	window.addEventListener('resize', () => {
+			// 		location.reload()
+			// 	})
+			// }catch(e){
+			// 	//TODO handle the exception
+			// }
         },
         methods: {  
             startRotate (e) {

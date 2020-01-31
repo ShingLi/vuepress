@@ -2,8 +2,8 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-03-09 18:59:06
- * @LastEditTime: 2019-10-04 12:16:35
- * @LastEditors: Please set LastEditors
+ * @LastEditTime : 2020-01-31 16:52:28
+ * @LastEditors  : Please set LastEditors
  -->
 <template>
 	<transition name ='slide'>
@@ -149,7 +149,8 @@
 					}
 				}
 				return {
-					marginLeft: '5vw'
+                    marginLeft: '5vw',
+                    marginTop: '3vh'
 				}
 			}
 		},

@@ -63,19 +63,19 @@
                         <el-main :style="calculateWidth_main">
                             <div class="main">
                                 <div class="detail">
-                                    <h3>《 卜算子 自嘲 》</h3>
-                                    <p>本是后山人， 偶做前堂客。 醉舞经阁半卷书， 坐井说天阔。</p>
-                                    <p>大志戏功名， 海斗量福祸。 论到囊中羞涩时， 怒指乾坤错！</p>
+                                    <!-- <h3>假如我年轻有为不自卑</h3> -->
+                                    <p style="color: #fff;">你这么多年没谈恋爱！难道是在等真爱？</p>
+									<p>你看这个人啊！一无所有，就算有一颗善良的心又有什么用？</p>
                                 </div>
                                 <!-- skil -->
                             <div class="progress" :class="[ isiPad ? 'ipad' : 'normal' ]">
-                                    <code>Html&&Html5</code>
+                                    <code>Html Html5</code>
                                     <el-progress :percentage="70"></el-progress>
-                                    <code>CSS&&CSS3</code>
+                                    <code>CSS CSS3</code>
                                     <el-progress :percentage="70" color="#8e71c7"></el-progress>
                                     <code>Jquery</code>
                                     <el-progress :percentage="60" color="#909399"></el-progress>
-                                    <code>JavaScript(es6 && es7)</code>
+                                    <code>JavaScript(es6 es7)</code>
                                     <el-progress :percentage="61" color="#F56C6C"></el-progress>
                                     <code>Mini program(微信小程序)</code>
                                     <el-progress :percentage="60" color="#2db7f5"></el-progress>
@@ -84,7 +84,7 @@
                                     <code>React</code>
                                     <el-progress :percentage="30" color="#19be6b"></el-progress>
 									<code>Koa</code>
-									<el-progress :percentage="10" color="#F56C6C"></el-progress>
+									<el-progress :percentage="3" color="#F56C6C"></el-progress>
                             </div>
                             </div>
                         </el-main>
@@ -117,7 +117,7 @@
 				    bossInfo: [
 				        { icon: "&#xe66e;", text: "男" },
 				        { icon: "&#xe626;", text: "汉" },
-				        { icon: "&#xe608;", text: "licheng" },
+				        { icon: "&#xe608;", text: "李成" },
 				        { icon: "&#xe60d;", text: "安徽芜湖" },
 				        { icon: "&#xe670;", text: "745573545@qq.com" }
 				    ],
@@ -303,8 +303,7 @@
                 }
                 p{
                     line-height: 35px;
-                    text-indent: 1%;
-                    
+                    // text-indent: 1%;
                 }
             }
             .progress{
